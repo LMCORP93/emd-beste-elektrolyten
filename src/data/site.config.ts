@@ -215,7 +215,7 @@ const config: SiteConfig = {
   discountPrice: products[0].discountPrice,
   rating: products[0].rating,
   author: { name: 'Tim', avatar: '/author-avatar.png', bio: 'Tester voor supplementen, hydratatie en sportvoeding sinds 2024.' },
-  analyticsMeasurementId: undefined,
+  analyticsMeasurementId: 'G-GJY1K19LEN',
   seo: {
     title: 'Beste elektrolyten poeder 2026: Top 6 vergeleken',
     description: 'Beste elektrolyten poeder in Nederland: Clearly, IM8, Instant Hydration, Haura, Punch Power en Dayneeds vergeleken op formule, prijs en gebruik.',
