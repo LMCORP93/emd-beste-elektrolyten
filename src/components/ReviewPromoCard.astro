@@ -4,6 +4,7 @@ import PromoCodeButton from './PromoCodeButton.astro';
 
 interface Product {
   name: string;
+  brand: string;
   image: string;
   rating: number;
   productType: string;
@@ -26,6 +27,9 @@ interface Props {
 const { product } = Astro.props;
 const cleanOrigin = product.origin.replace(/^[\u{1F1E6}-\u{1F1FF}]{2}\s*/u, '');
 const originPrefix = product.originFlag || (/^[\u{1F1E6}-\u{1F1FF}]{2}/u.test(product.origin) ? '' : '🇫🇷');
+const cardTitle = product.name.toLowerCase().includes(product.brand.toLowerCase())
+  ? product.name
+  : `${product.brand} ${product.name}`;
 ---
 
 <div class="rpc-card">
@@ -33,7 +37,7 @@ const originPrefix = product.originFlag || (/^[\u{1F1E6}-\u{1F1FF}]{2}/u.test(pr
   <div class="rpc-img-col">
     <img
       src={product.image}
-      alt={product.name}
+      alt={cardTitle}
       class="rpc-img"
       loading="lazy"
     />
@@ -44,7 +48,7 @@ const originPrefix = product.originFlag || (/^[\u{1F1E6}-\u{1F1FF}]{2}/u.test(pr
 
     <!-- Header: title + rating -->
     <div class="rpc-header">
-      <h4 class="rpc-title">{product.name}</h4>
+      <h4 class="rpc-title">{cardTitle}</h4>
       <div class="rpc-rating">
         <StarRating rating={product.rating} size="sm" />
         <span class="rpc-rating-val">{product.rating.toFixed(1)}</span>
@@ -289,6 +293,23 @@ const originPrefix = product.originFlag || (/^[\u{1F1E6}-\u{1F1FF}]{2}/u.test(pr
       width: 100%;
       justify-content: center;
     }
+  }
+
+  .rpc-cta {
+    color: #ffffff;
+    text-decoration: none;
+    flex: 1 1 12rem;
+    min-width: 11rem;
+  }
+
+  .rpc-cta:hover {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .rpc-cta-arrow {
+    color: #ffffff;
+    flex-shrink: 0;
   }
 
   /* ── Verified ── */
