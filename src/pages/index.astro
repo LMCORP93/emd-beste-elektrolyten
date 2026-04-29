@@ -1,0 +1,118 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogHero from '@/components/BlogHero.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import ComparatorCard from '@/components/ComparatorCard.astro';
+import SidebarCTA from '@/components/SidebarCTA.astro';
+import FAQSection from '@/components/FAQSection.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import ContentImage from '@/components/ContentImage.astro';
+import InnerNote from '@/components/InnerNote.astro';
+import config from '@/data/site.config';
+
+const topProduct = config.products[0];
+const productLink = (brand: string, label = brand) => {
+  const product = config.products.find((item) => item.brand === brand);
+  const href = product?.affiliateLink ?? '#';
+  return `<a class="table-link" href="${href}" target="_blank" rel="nofollow sponsored">${label}</a>`;
+};
+
+const pageTitle = 'Beste elektrolyten poeder 2026: Top 6 vergeleken';
+const pageDescription = 'De beste elektrolyten in Nederland: Clearly, IM8, Instant Hydration, Haura, Punch Power en Dayneeds vergeleken op formule, prijs, gebruik en korting.';
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'BreadcrumbList', itemListElement:[{'@type':'ListItem',position:1,name:'Beste Elektrolyten',item:config.domain}] })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'WebSite', name: config.siteName, url: config.domain })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'ItemList', itemListElement: config.products.map((p, i) => ({ '@type':'ListItem', position:i+1, item:{ '@type':'Product', name:p.name, image:p.image, brand:{'@type':'Brand', name:p.brand}, offers:{'@type':'Offer', priceCurrency:'EUR', price:p.discountPrice.replace(/[^\d.]/g,''), availability:'https://schema.org/InStock', url:p.affiliateLink}, aggregateRating:{'@type':'AggregateRating', ratingValue:p.rating, bestRating:10, reviewCount:p.reviewCount}} })) })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'FAQPage', mainEntity: config.faq.map((item) => ({ '@type':'Question', name:item.question, acceptedAnswer:{ '@type':'Answer', text:item.answer } })) })} />
+
+  <BlogHero
+    title={pageTitle}
+    description="We vergelijken elektrolyten poeder, sticks en premium daily drinks voor sport, warmte, vasten, reizen en dagelijks gebruik, met Clearly als beste keuze voor Nederland."
+    author={config.author.name}
+    authorAvatar={config.author.avatar}
+    date="29 april 2026"
+    readingTime="17 min. leestijd"
+    breadcrumbs={[{ label: 'Beste Elektrolyten', href: '/' }]}
+    bannerImage="/images/content/sugar-free-electrolytes-hero.webp"
+    product={{ name: topProduct.name, image: topProduct.image, promoCode: topProduct.promoCode, promoPercent: topProduct.promoPercent, originalPrice: topProduct.originalPrice, discountPrice: topProduct.discountPrice, affiliateLink: topProduct.affiliateLink }}
+    heroButton={{ text: 'Bekijk de ranking', href: `#product-${topProduct.slug}` }}
+    showOfferBlock={false}
+  />
+
+  <main style="background-color:#ffffff;">
+    <div class="container-large padding-global">
+      <div class="padding-section-medium">
+        <div class="blog-grid">
+          <div class="content-column">
+            <section id="introduction" class="rich-text">
+              <h2>Beste elektrolyten: de korte conclusie</h2>
+              <p>De beste keuze voor <strong>elektrolyten poeder in Nederland</strong> is volgens ons <strong>Clearly Electrolytes</strong>. De reden is simpel: het product sluit het meest direct aan op wat mensen zoeken. Geen vage sportdrank, geen overvolle wellnessmix, maar een suikervrij elektrolyten poeder met een duidelijke mineralenlogica, Nederlandse merkfit en een prijs die met code LMC aantrekkelijker wordt.</p>
+              <p><strong>IM8</strong> staat op plaats 2 omdat het als premium all-in-one veel breder is. Wie hydratatie wil combineren met dagelijkse micronutriënten, krijgt daar de sterkste formule. <strong>Instant Hydration</strong> staat op plaats 3 omdat sticks praktischer zijn voor onderweg, training, reizen en warme dagen.</p>
+              <p>We hebben dit EMD bewust gebouwd rond koopintentie, niet rond algemene gezondheidsclaims. De Nederlandse zoekvraag is concreet: mensen willen weten welk elektrolyten poeder ze moeten kopen, wanneer het nuttig is en welk product past bij sport, hitte, vasten of dagelijkse hydratatie.</p>
+            </section>
+
+            <TableOfContents items={config.tocItems} />
+
+            <section id="ranking" class="comparatif-cards">
+              {config.products.map((product) => (<div id={`product-${product.slug}`}><ComparatorCard product={product} /></div>))}
+            </section>
+
+            <section id="methodiek" class="rich-text seo-guide">
+              <h2>Hoe we de beste elektrolyten hebben beoordeeld</h2>
+              <p>Onze ranking begint bij zoekintentie. Een product dat goed scoort op deze pagina moet logisch zijn voor iemand die zoekt naar beste elektrolyten, elektrolyten poeder of elektrolyten zonder suiker. Daarom kijken we eerst naar de formule: natrium, kalium, magnesium, calcium, suikergehalte, porties en prijs per portie.</p>
+              <p>Daarna kijken we naar de gebruikssituatie. Voor veel zweten is natrium belangrijker dan een mooi wellnesslabel. Voor vasten tellen calorieën, zoetstoffen en maagcomfort. Voor sport en reizen is het formaat relevant. Voor dagelijks gebruik kan een breder product zoals IM8 interessant zijn, maar dan moet de koper ook bereid zijn meer te betalen.</p>
+              <p>De derde laag is commerciële bruikbaarheid voor LMC: duidelijke affiliate link, echte korting, betrouwbaar merkbeeld en een logische reden om door te klikken. Clearly wint omdat het de Nederlandse categorie het scherpst raakt. IM8 wint op premiumformule, Instant Hydration op gemak, Haura op micronutriënten, Punch Power op budget en Dayneeds als extra poederalternatief.</p>
+              <p>Dit is geen medische ranglijst. Het is een redactionele koopgids voor supplementkopers die snel willen begrijpen welk product bij hun situatie past.</p>
+            </section>
+
+            <ContentImage src="/images/content/sugar-free-electrolytes-hero.webp" alt="Vergelijking van elektrolyten poeder zonder suiker" caption="Poeder, sticks en premium daily drinks hebben elk een andere rol. De beste keuze hangt af van gebruik, budget en gemak." />
+
+            <section id="keuzehulp" class="rich-text seo-guide">
+              <h2>Zo kies je elektrolyten poeder zonder miskoop</h2>
+              <h3>Begin met je situatie</h3>
+              <p>Gebruik je elektrolyten voor sporten, sauna, warm weer, reizen, low-carb eten of vasten? Dat bepaalt bijna alles. Voor sport en hitte wil je vooral een duidelijke mineralenformule. Voor dagelijks gebruik wil je smaak, lage calorieën en een prijs die herhaalbaar blijft. Voor onderweg zijn sticks makkelijker dan een pot.</p>
+              <h3>Controleer eerst natrium</h3>
+              <p>Veel kopers kijken meteen naar magnesium, maar bij zweten is natrium vaak het belangrijkste mineraal. Kalium, magnesium en calcium zijn nuttige aanvullingen, maar zonder voldoende natrium voelt een elektrolytenproduct vaak meer als marketing dan als echte hydratatiehulp.</p>
+              <h3>Reken per portie</h3>
+              <p>Een product kan goedkoop lijken en toch duur zijn als de dosering laag is of als je twee porties nodig hebt. Kijk daarom naar prijs per portie, aantal porties per verpakking en of je het product dagelijks of alleen incidenteel gaat gebruiken.</p>
+              <h3>Let op zoetstoffen en maagcomfort</h3>
+              <p>Suikervrij betekent niet automatisch ideaal. Sommige producten gebruiken stevia, sucralose, zuren of aroma’s. Als je gevoelig reageert, start dan laag en test eerst buiten zware training.</p>
+            </section>
+
+            <ComparisonTable title="Snelle keuzehulp" headers={[{label:'Situatie'}, {label:'Beste keuze'}]} rows={[
+              { cells: ['<span class="table-fit">🥇 Beste elektrolyten poeder</span><span class="table-muted"> Sport, hitte, dagelijks gebruik</span>', productLink('Clearly', '✅ Clearly')], highlight: true },
+              { cells: ['<span class="table-fit">💎 Premium daily routine</span><span class="table-muted"> Breder dan elektrolyten</span>', productLink('IM8', '✅ IM8') ] },
+              { cells: ['<span class="table-fit">🎒 Sticks voor onderweg</span><span class="table-muted"> Reizen, training, warme dagen</span>', productLink('Instant Hydration', '✅ Instant Hydration') ] },
+              { cells: ['<span class="table-fit">🌱 Micronutriënten drink</span><span class="table-muted"> Dagelijkse routine</span>', productLink('Haura', '✅ Haura') ] },
+              { cells: ['<span class="table-fit">💸 Budget sportoptie</span><span class="table-muted"> Incidenteel gebruik</span>', productLink('Punch Power', '✅ Punch Power') ] }
+            ]}/>
+
+            <section id="situaties" class="rich-text seo-guide">
+              <h2>Voor wie zijn elektrolyten echt nuttig?</h2>
+              <p>Elektrolyten zijn vooral nuttig wanneer water alleen niet genoeg is. Denk aan veel zweten, warm weer, sauna, reizen, intensieve training, low-carb eten of vasten. In die situaties verlies je niet alleen vocht, maar ook mineralen. Dan kan een goed elektrolyten poeder praktisch zijn.</p>
+              <p>Voor een rustige dag zonder veel zweetverlies heeft niet iedereen extra elektrolyten nodig. Dat is precies waarom we Clearly bovenaan zetten: het is concreet genoeg voor echte gebruikssituaties, maar niet zo duur of overbouwd dat je het alleen als premium lifestyleproduct kunt gebruiken.</p>
+              <p>Voor Nederlandse kopers speelt ook beschikbaarheid mee. Een product kan op papier sterk zijn, maar minder interessant worden als levering, prijs, porties of gebruiksmomenten niet kloppen. Daarom krijgt een helder poeder met veel porties vaak de voorkeur boven een flashy drankje dat vooral als lifestyleclaim voelt.</p>
+              <p>Ook smaak is belangrijker dan veel vergelijkingen toegeven. Elektrolyten kunnen zout, zuur of kunstmatig zoet smaken. Wie het product dagelijks wil gebruiken, moet niet alleen naar de ingrediënten kijken, maar ook naar hoe makkelijk het in water mengt en of je het na een week nog steeds wilt drinken.</p>
+              <p>IM8 is logisch als je elektrolyten wilt combineren met bredere micronutriënten. Instant Hydration is logisch als gemak belangrijker is dan prijs per portie. Haura, Punch Power en Dayneeds zijn vooral nuttig als je respectievelijk een daily drink, budgetoptie of extra poedervergelijking zoekt.</p>
+            </section>
+
+            <InnerNote emoji="📌" text="Kort gezegd: Clearly is onze nummer 1 voor elektrolyten poeder in Nederland. IM8 is de premium keuze. Instant Hydration is het handigst voor onderweg." />
+
+            <section id="verdict" class="rich-text seo-guide">
+              <h2>Eindoordeel</h2>
+              <p><strong>Clearly is onze beste keuze</strong> voor dit EMD, omdat het de zoekvraag beste elektrolyten het meest direct beantwoordt. De combinatie van suikervrij poeder, duidelijke mineralen, Nederlandse merkfit en kortingscode maakt het de meest logische start voor kopers.</p>
+              <p><strong>IM8</strong> is sterker voor wie een premium daily all-in-one wil. <strong>Instant Hydration</strong> is sterker voor wie sticks wil. <strong>Haura</strong>, <strong>Punch Power</strong> en <strong>Dayneeds</strong> maken de vergelijking compleet, maar zijn minder scherp als nummer 1.</p>
+              <p>De volgende stap voor dit EMD is logisch: aparte pagina’s voor elektrolyten poeder, elektrolyten zonder suiker, elektrolyten tijdens vasten en een dedicated Clearly review. De homepage is nu de centrale vergelijkingspagina.</p>
+              <p>Voor de eerste versie is dat genoeg: een duidelijke homepage, een sterke top 1, zes vergelijkbare alternatieven en genoeg semantiek rond elektrolyten, poeder, sport, warmte, vasten en dagelijkse hydratatie.</p>
+            </section>
+
+            <section id="faq" class="faq-section"><FAQSection faq={config.faq} title="Veelgestelde vragen" /></section>
+          </div>
+          <aside class="sidebar-column"><div class="sidebar-sticky"><SidebarCTA logoSrc={topProduct.brandLogo} productName={topProduct.name} brandName={topProduct.brand} promoCode={topProduct.promoCode} promoPercent={topProduct.promoPercent} originalPrice={topProduct.originalPrice} discountPrice={topProduct.discountPrice} ctaLink={topProduct.affiliateLink} heroImage={topProduct.image} rating={topProduct.rating} reviewCount={topProduct.reviewCount} /></div></aside>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+<style>.seo-guide{margin-top:3rem;padding-top:2rem;border-top:2px solid #f0ebe3}.seo-guide h3{margin-top:2rem;margin-bottom:.75rem;font-size:1.25rem;font-weight:600;color:#242424}.seo-guide p{margin-bottom:1rem;line-height:1.8;color:#444}.faq-section{margin-top:3rem;padding-top:2rem;border-top:2px solid #f0ebe3}</style>
