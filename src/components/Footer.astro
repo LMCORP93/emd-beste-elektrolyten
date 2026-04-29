@@ -61,16 +61,16 @@ const infoLinks: NavLink[] = [
     <!-- 2-column grid: links only -->
     <div class="footer_grid">
 
-      <!-- Column 1: Ratgeber -->
+      <!-- Column 1: Gidsen -->
       <div class="footer_colonne">
-        <div class="footer_col-title">Ratgeber</div>
+        <div class="footer_col-title">Gidsen</div>
         <div class="footer_wrapper-links">
           {guideLinks.length > 0 ? guideLinks.map((link) => (
             <a href={link.href} class="footer_link">
               {link.label}
             </a>
           )) : (
-            <span class="footer_link--placeholder">Kommt bald…</span>
+            <span class="footer_link--placeholder">Binnenkort…</span>
           )}
         </div>
       </div>
