@@ -201,8 +201,8 @@ const products: Product[] = [
 ];
 
 const config: SiteConfig = {
-  domain: 'https://emd-beste-elektrolyten.pages.dev',
-  isIndexable: false,
+  domain: 'https://beste-elektrolyten.nl',
+  isIndexable: true,
   siteName: 'Beste Elektrolyten',
   brand: 'Clearly',
   product: 'Electrolytes',
