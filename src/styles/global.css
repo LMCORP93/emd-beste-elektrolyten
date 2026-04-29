@@ -208,6 +208,23 @@ html {
 .rich-text a { color: #ef7a1a; text-decoration: underline; }
 .rich-text > :first-child { margin-top: 0; }
 .rich-text > :last-child { margin-bottom: 0; }
+
+/* ── EMD in-content promo cards ─────────────────────────────────── */
+.template-promo-block {
+  margin: 2.25rem 0 3rem;
+}
+.template-promo-block + h2,
+.template-promo-block + h3 {
+  margin-top: 2.75rem;
+}
+.template-promo-block .rpc-card {
+  margin-bottom: 0;
+}
+@media (max-width: 767px) {
+  .template-promo-block {
+    margin: 1.75rem 0 2.25rem;
+  }
+}
 @media (min-width: 768px) {
   .rich-text h2 { margin-top: 2.5rem; margin-bottom: 1rem; }
   .rich-text h3 { margin-top: 2rem; margin-bottom: 0.75rem; }
