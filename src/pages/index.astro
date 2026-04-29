@@ -90,6 +90,21 @@ const productSchema = (p: typeof config.products[number]) => ({
               <p><strong>IM8</strong> staat op plaats 2 omdat het als premium all-in-one veel breder is. Wie hydratatie wil combineren met dagelijkse micronutriënten, krijgt daar de sterkste formule. <strong>Instant Hydration</strong> staat op plaats 3 omdat sticks praktischer zijn voor onderweg, training, reizen en warme dagen.</p>
               <p>Deze gids is bewust gebouwd rond koopintentie, niet rond algemene gezondheidsclaims. De Nederlandse zoekvraag is concreet: mensen willen weten welk elektrolytenpoeder ze moeten kopen, wanneer het nuttig is en welk product past bij sport, hitte, vasten of dagelijkse hydratatie.</p>
             </section>
+            <section id="ranking-methodologie" class="methodology-box">
+              <h2>Hoe we de producten hebben gerangschikt</h2>
+              <p>Onze rangschikking combineert redactionele en praktische criteria, zodat de keuze niet alleen afhangt van prijs of korting.</p>
+              <ul>
+                  <li>Formule en profiel van actieve ingrediënten</li>
+                  <li>Werkelijke prijs na korting en kosten per gebruik</li>
+                  <li>Beschikbaarheid en bestelgemak</li>
+                  <li>Klantbeoordelingen en publieke vertrouwenssignalen</li>
+                  <li>Transparantie van het merk over samenstelling en claims</li>
+                  <li>Duidelijkheid van kortingscode, voorwaarden en aanbod</li>
+                  <li>Aansluiting op de hoofdbehoefte van deze pagina</li>
+              </ul>
+              <p class="methodology-box__disclaimer"><strong>Transparence affiliation.</strong> Sommige links zijn affiliate links: LMC kan een commissie ontvangen als je via deze links koopt, zonder extra kosten voor jou. Dat vervangt onze redactionele selectie niet: een product wordt alleen aanbevolen als het past bij de behoefte op deze pagina.</p>
+            </section>
+
 
             <TableOfContents items={config.tocItems} />
 
@@ -154,4 +169,14 @@ const productSchema = (p: typeof config.products[number]) => ({
     </div>
   </main>
 </BaseLayout>
-<style>.seo-guide{margin-top:3rem;padding-top:2rem;border-top:2px solid #f0ebe3}.seo-guide h3{margin-top:2rem;margin-bottom:.75rem;font-size:1.25rem;font-weight:600;color:#242424}.seo-guide p{margin-bottom:1rem;line-height:1.8;color:#444}.faq-section{margin-top:3rem;padding-top:2rem;border-top:2px solid #f0ebe3}</style>
+<style>.seo-guide{margin-top:3rem;padding-top:2rem;border-top:2px solid #f0ebe3}.seo-guide h3{margin-top:2rem;margin-bottom:.75rem;font-size:1.25rem;font-weight:600;color:#242424}.seo-guide p{margin-bottom:1rem;line-height:1.8;color:#444}.faq-section{margin-top:3rem;padding-top:2rem;border-top:2px solid #f0ebe3}
+.methodology-box { margin: 2rem 0; padding: 1.35rem; border: 1px solid #eadfce; border-radius: 18px; background: #f8f4ec; color: #2f2922; }
+.methodology-box, .methodology-box h2, .methodology-box p, .methodology-box li, .methodology-box strong { color: #2f2922; }
+.methodology-box h2 { margin: 0 0 .75rem; font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1.15; }
+.methodology-box p { margin: 0 0 .9rem; line-height: 1.65; }
+.methodology-box ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem 1rem; margin: .8rem 0 1rem; padding-left: 1.1rem; }
+.methodology-box li { line-height: 1.45; }
+.methodology-box__disclaimer { margin-top: .85rem !important; padding-top: .85rem; border-top: 1px solid #eadfce; font-size: .92rem; }
+@media (max-width: 768px) { .methodology-box ul { grid-template-columns: 1fr; } .methodology-box { padding: 1rem; } }
+
+</style>
