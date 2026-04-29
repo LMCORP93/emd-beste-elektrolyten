@@ -1,11 +1,8 @@
 export async function onRequest(context) {
   const url = new URL(context.request.url);
 
-  if (
-    url.hostname === 'www.beste-elektrolyten.nl' ||
-    url.hostname === 'emd-beste-elektrolyten.pages.dev'
-  ) {
-    url.hostname = 'beste-elektrolyten.nl';
+  if (url.hostname === 'emd-beste-elektrolyten.pages.dev') {
+    url.hostname = 'www.beste-elektrolyten.nl';
     return Response.redirect(url.toString(), 301);
   }
 
