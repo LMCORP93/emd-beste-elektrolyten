@@ -9,7 +9,6 @@ import FAQSection from '@/components/FAQSection.astro';
 import ContentImage from '@/components/ContentImage.astro';
 import ComparisonTable from '@/components/ComparisonTable.astro';
 import config from '@/data/site.config';
-import AuthorBioCard from '@/components/AuthorBioCard.astro';
 
 const clearly = config.products.find((item) => item.brand === 'Clearly')!;
 const instant = config.products.find((item) => item.brand === 'Instant Hydration')!;
@@ -99,7 +98,6 @@ const productLink = (product: typeof clearly) => `<a class="table-link" href="${
 
     <section id="faq" class="faq-section"><FAQSection faq={faq} title="Veelgestelde vragen" /></section>
 
-        <AuthorBioCard />
 
   </div><aside class="sidebar-column"><div class="sidebar-sticky"><SidebarCTA logoSrc={clearly.brandLogo} productName={clearly.name} brandName={clearly.brand} promoCode={clearly.promoCode} promoPercent={clearly.promoPercent} originalPrice={clearly.originalPrice} discountPrice={clearly.discountPrice} ctaLink={clearly.affiliateLink} heroImage={clearly.image} rating={clearly.rating} reviewCount={clearly.reviewCount} /></div></aside></div></div></div></main>
 </BaseLayout>
