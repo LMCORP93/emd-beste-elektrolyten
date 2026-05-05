@@ -9,6 +9,7 @@ import ComparisonTable from '@/components/ComparisonTable.astro';
 import ContentImage from '@/components/ContentImage.astro';
 import InnerNote from '@/components/InnerNote.astro';
 import config from '@/data/site.config';
+import AuthorBioCard from '@/components/AuthorBioCard.astro';
 
 const topProduct = config.products[0];
 const productLink = (brand: string, label = brand) => {
@@ -162,6 +163,8 @@ const productSchema = (p: typeof config.products[number]) => ({
             </section>
 
             <section id="faq" class="faq-section"><FAQSection faq={config.faq} title="Veelgestelde vragen" /></section>
+
+        <AuthorBioCard />
           </div>
           <aside class="sidebar-column"><div class="sidebar-sticky"><SidebarCTA logoSrc={topProduct.brandLogo} productName={topProduct.name} brandName={topProduct.brand} promoCode={topProduct.promoCode} promoPercent={topProduct.promoPercent} originalPrice={topProduct.originalPrice} discountPrice={topProduct.discountPrice} ctaLink={topProduct.affiliateLink} heroImage={topProduct.image} rating={topProduct.rating} reviewCount={topProduct.reviewCount} /></div></aside>
         </div>
