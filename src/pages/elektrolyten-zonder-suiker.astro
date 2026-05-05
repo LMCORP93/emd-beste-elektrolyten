@@ -6,8 +6,10 @@ import TableOfContents from '@/components/TableOfContents.astro';
 import ReviewPromoCard from '@/components/ReviewPromoCard.astro';
 import SidebarCTA from '@/components/SidebarCTA.astro';
 import FAQSection from '@/components/FAQSection.astro';
+import ContentImage from '@/components/ContentImage.astro';
 import InnerNote from '@/components/InnerNote.astro';
 import config from '@/data/site.config';
+import AuthorBioCard from '@/components/AuthorBioCard.astro';
 
 const clearly = config.products.find((item) => item.brand === 'Clearly')!;
 const pageTitle = 'Elektrolyten zonder suiker: beste opties zonder suikerpiek';
@@ -42,7 +44,52 @@ const faq = [
     <div class="template-promo-block"><ReviewPromoCard product={clearly} /></div>
     <section id="etiket" class="rich-text seo-guide"><h2>Waar moet je op letten op het etiket?</h2><ul><li><strong>Natrium:</strong> belangrijk bij zweten en warme dagen.</li><li><strong>Kalium, magnesium en calcium:</strong> nuttige aanvullingen, maar niet de enige factor.</li><li><strong>Suiker en calorieën:</strong> check of het product echt past bij je doel.</li><li><strong>Porties:</strong> bereken prijs per portie, niet alleen prijs per verpakking.</li><li><strong>Smaakstoffen:</strong> belangrijk als je het product dagelijks wilt drinken.</li></ul><div class="template-promo-block"><ReviewPromoCard product={clearly} /></div></section>
     <section id="praktijk" class="rich-text seo-guide"><h2>Praktische scenario’s: wanneer kies je welke suikervrije elektrolyt?</h2><h3>Voor warme dagen en kantoor</h3><p>Op warme dagen drinken veel mensen vooral meer water. Dat is logisch, maar als je veel zweet kan water alleen vlak aanvoelen. Een suikervrij elektrolytenpoeder is dan handig omdat je snel een fles water kunt verrijken zonder dat het een zoete sportdrank wordt. Voor dit scenario is Clearly het meest logisch: pot open, doseren, mengen en klaar.</p><h3>Voor sport zonder zware koolhydraatbehoefte</h3><p>Bij korte krachttraining, fitness, padel, hardlopen onder een uur of sauna na sport heb je niet altijd extra suiker nodig. Je wilt vooral een drank die prettig smaakt, mineralen levert en niet zwaar op de maag ligt. Suikervrije elektrolyten passen hier beter dan veel klassieke isotone drankjes.</p><h3>Voor low-carb, keto of vasten</h3><p>Mensen die minder koolhydraten eten, letten vaak extra op suiker. Dan is het belangrijk dat het product niet stiekem veel calorieën of koolhydraten toevoegt. Controleer alsnog het etiket, want “zonder suiker” betekent niet altijd “zonder alle toevoegingen”.</p><h3>Voor reizen</h3><p>Reizen combineert vaak droge lucht, onregelmatig eten, koffie, alcohol of warm klimaat. Sticks zoals Instant Hydration zijn hier praktischer dan een pot. Toch blijft poeder thuis of in een vaste routine voordeliger.</p></section><section id="fouten" class="rich-text seo-guide"><h2>Veelgemaakte fouten bij elektrolyten zonder suiker</h2><p>De eerste fout is alleen naar magnesium kijken. Magnesium is populair, maar bij zweten is natrium vaak belangrijker. Een elektrolytenproduct zonder duidelijke natriumlogica voelt snel als wellnessmarketing.</p><p>De tweede fout is blind kiezen voor de goedkoopste verpakking. Kijk altijd naar porties. Een pot met 60 porties kan uiteindelijk goedkoper zijn dan een goedkoper ogend doosje met weinig servings.</p><p>De derde fout is te laat testen. Gebruik een ni... [truncated]
+            <ContentImage
+          src="/images/content/electrolytes-nl-buying-guide-inline.webp"
+          alt="Keuzegids voor suikervrije elektrolyten"
+          caption="Vergelijk altijd dosering per portie, smaakstoffen en prijs per serving."
+        />
+
+        <ContentImage
+          src="/images/content/electrolytes-nl-powder-tablets-hero.webp"
+          alt="Elektrolyten poeder en tabletten zonder suiker"
+          caption="Poeder is vaak flexibeler, tabletten zijn vooral praktisch onderweg."
+        />
+
+        <ContentImage
+          src="/images/content/sugar-free-electrolytes-hero.webp"
+          alt="Suikervrije elektrolyten in een lichte sportcontext"
+          caption="Een suikervrije formule is vooral interessant voor sport, vasten en dagelijkse hydratatie."
+        />
+
+    
+    <section id="praktische-verdieping" class="article-section rich-text" data-batch2-depth>
+      <h2>Suikervrije elektrolyten: zo vergelijk je eerlijk</h2>
+      <p>De meeste keuzes rond elektrolyten lijken eenvoudiger dan ze zijn. Op het etiket staan vaak dezelfde woorden: hydratatie, mineralen, sport, energie en herstel. Toch maakt het in de praktijk veel uit of je een formule kiest voor zonder suiker, voor dagelijks drinken of voor een specifiek moment zoals sport, keto, vasten en dagelijks gebruik. Een goede keuze begint daarom niet bij de mooiste verpakking, maar bij de situatie waarin je het product echt gaat gebruiken.</p>
+      <p>Begin met de mineralen per portie. Natrium is vaak het meest bepalend voor hydratatie, maar kalium en magnesium kunnen de formule ronder maken. Een product met veel marketing en weinig duidelijke dosering is minder interessant dan een formule die exact laat zien wat je per serving binnenkrijgt. Zeker bij zoetstoffen en mineralen wil je niet gokken op smaak alleen. Je wilt weten of de portie past bij je doel, je voeding en je tolerantie.</p>
+      <p>Daarna kijk je naar suiker. Voor intensieve sport kan suiker soms logisch zijn, maar voor veel LMC-lezers is een suikervrije of suikerarme formule praktischer. Bij vasten, keto, dagelijkse hydratatie of een rustige werkdag wil je meestal geen onnodige koolhydraten. Let wel op dat suikervrij niet automatisch beter betekent. Een slechte smaak, te veel zoetstof of een te zwakke mineralenmix blijft een matige keuze, ook zonder suiker.</p>
+      <p>Prijs per portie is de volgende stap. Een goedkope pot kan duur zijn als de dosering laag is of als je meerdere scoops nodig hebt. Een premium product kan juist logisch zijn als de formule sterk is, goed oplost en je het consistent gebruikt. Reken daarom altijd terug naar prijs per bruikbare portie. Dat maakt de vergelijking eerlijker dan alleen kijken naar de prijs van de verpakking.</p>
+      <p>Tot slot telt gedrag. Het beste elektrolytenproduct is niet het product dat theoretisch het meest compleet is, maar het product dat je op het juiste moment blijft gebruiken. Als je het thuis drinkt, is poeder vaak logisch. Als je veel reist, zijn sticks of tabletten makkelijker. Als smaak je tegenhoudt, maakt de beste formule weinig verschil. Deze praktische laag hoort in de keuze, omdat elektrolyten alleen waarde hebben wanneer ze daadwerkelijk in je routine terechtkomen.</p>
+    </section>
+
+    <section id="koopcriteria" class="article-section rich-text note-box" data-batch2-depth>
+      <h2>Onze koopcriteria voor deze pagina</h2>
+      <p>Wij beoordelen elektrolyten op vijf criteria: duidelijke dosering, suikervrije of suikerarme formule, smaak die je kunt volhouden, prijs per portie en beschikbaarheid via een betrouwbare aanbieder. Clearly scoort sterk omdat het merk goed past bij de Nederlandse markt en omdat de formule makkelijk te begrijpen is. IM8 en Instant Hydration blijven interessante alternatieven wanneer je breder vergelijkt of een andere smaak zoekt.</p>
+      <p>Voor zonder suiker is vooral belangrijk dat je geen medische claims nodig hebt om de keuze te verdedigen. Elektrolyten zijn nuttig als praktisch hydratatiehulpmiddel, niet als magische oplossing. Wie veel zweet, weinig koolhydraten eet, vast of snel hoofdpijn krijgt bij vochtverlies, kan baat hebben bij een betere mineralenroutine. Wie al evenwichtig eet en weinig vocht verliest, heeft misschien minder nodig dan de marketing doet vermoeden.</p>
+      <p>De beste beslissing is daarom gecontroleerd: kies één product, test het op dezelfde momenten, let op smaak en maaggevoel, en vergelijk daarna pas met een alternatief. Zo voorkom je dat je drie producten koopt zonder te weten welk effect van welk product kwam. Voor een EMD als deze is dat ook de meest eerlijke aanbeveling: niet harder verkopen, maar beter helpen kiezen.</p>
+    </section>
+
+
+    <section id="praktische-testweek" class="article-section rich-text" data-batch2-final-depth>
+      <h2>Test het product één week voordat je vergelijkt</h2>
+      <p>Een eerlijke elektrolytenkeuze ontstaat niet door drie producten tegelijk te openen. Kies één formule, gebruik die zeven dagen op vergelijkbare momenten en noteer kort wat je merkt: smaak, dorst, maaggevoel, gemak, sportmomenten en of je het product vanzelf opnieuw pakt. Dat laatste is belangrijker dan het lijkt. Een product dat theoretisch sterk is maar niet in je ritme past, blijft uiteindelijk ongebruikt.</p>
+      <p>Let in die testweek vooral op dosering en context. Een portie na zweten voelt anders dan een portie op een rustige werkdag. Ook voeding, zoutinname en koffieverbruik beïnvloeden het gevoel. Wie deze factoren negeert, schrijft te snel een positief of negatief oordeel toe aan het product. Daarom is onze aanbeveling praktisch: test gecontroleerd, vergelijk daarna pas prijs en alternatieven, en koop alleen groter in als smaak en gebruiksmoment echt kloppen.</p>
+    </section>
+
     <section id="faq" class="faq-section"><FAQSection faq={faq} title="Veelgestelde vragen" /></section>
+
+        <AuthorBioCard />
+
   </div><aside class="sidebar-column"><div class="sidebar-sticky"><SidebarCTA logoSrc={clearly.brandLogo} productName={clearly.name} brandName={clearly.brand} promoCode={clearly.promoCode} promoPercent={clearly.promoPercent} originalPrice={clearly.originalPrice} discountPrice={clearly.discountPrice} ctaLink={clearly.affiliateLink} heroImage={clearly.image} rating={clearly.rating} reviewCount={clearly.reviewCount} /></div></aside></div></div></div></main>
 </BaseLayout>
 
