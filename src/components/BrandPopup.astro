@@ -3,6 +3,7 @@ interface Props {
   brand: string;
   productImage: string;
   productName: string;
+  productType?: string;
   description: string;
   promoCode: string;
   promoPercent: number;
@@ -10,7 +11,6 @@ interface Props {
   discountPrice: string;
   affiliateLink: string;
   rating: number;
-  productType?: string;
 }
 
 const {
@@ -20,18 +20,16 @@ const {
 } = Astro.props;
 
 const shortDesc = description.length > 100 ? description.slice(0, 97) + '...' : description;
-const hasPromo = Boolean(promoCode);
-const hasPromoPercent = Number(promoPercent) > 0;
-const promoPercentLabel = hasPromoPercent ? `-${promoPercent}%` : '';
-const triggerText = hasPromo
-  ? `Kortingscode ${promoCode}`
-  : 'Aanbieding bekijken';
+const hasCode = Boolean(promoCode);
+const hasDiscount = Boolean(promoCode && promoPercent > 0);
+const priceLabel = hasDiscount ? discountPrice : 'Prix officiel';
+const triggerLabel = hasCode ? `🎁 Code promo ${promoCode}` : '🎁 Voir l’offre';
 ---
 
-<div id="brand-popup" class="bp" role="dialog" aria-modal="true" aria-label="Exclusieve aanbieding">
+<div id="brand-popup" class="bp" role="dialog" aria-modal="true" aria-label="Offre partenaire">
   <div id="popup-overlay" class="bp-overlay"></div>
   <div class="bp-card">
-    <button id="popup-close" class="bp-close" aria-label="Sluiten">
+    <button id="popup-close" class="bp-close" aria-label="Fermer">
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 6 6 18" /><path d="m6 6 12 12" />
       </svg>
@@ -42,7 +40,7 @@ const triggerText = hasPromo
       <img src={productImage} alt={productName} class="bp-img" loading="lazy" />
 
       <!-- Tag -->
-      <span class="bp-tag">Exclusieve aanbieding</span>
+      <span class="bp-tag">Offre partenaire</span>
 
       <!-- Title -->
       <h3 class="bp-title">{productName}</h3>
@@ -52,19 +50,19 @@ const triggerText = hasPromo
 
       <!-- Price -->
       <div class="bp-price">
-        <span class="bp-price-old">{originalPrice}</span>
-        <span class="bp-price-new">{discountPrice}</span>
+        {hasDiscount && <span class="bp-price-old">{originalPrice}</span>}
+        <span class="bp-price-new">{priceLabel}</span>
       </div>
 
       <!-- Buttons stacked -->
-      {hasPromo && (
-        <div class="bp-btns">
-          <a href={affiliateLink} rel="nofollow sponsored" target="_blank" class="btn-solid" style="width:100%">
-            <span>Nu kopen</span>
-            <span class="btn-arrow">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </span>
-          </a>
+      <div class="bp-btns">
+        <a href={affiliateLink} rel="nofollow sponsored" target="_blank" class="btn-solid" style="width:100%">
+          <span>Voir l'offre</span>
+          <span class="btn-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+        {hasCode && (
           <button id="popup-copy-btn" class="copy-promo-btn btn-dashed" data-code={promoCode} style="width:100%">
             <span class="promo-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -72,18 +70,18 @@ const triggerText = hasPromo
               </svg>
             </span>
             <span class="promo-code-text">{promoCode}</span>
-            {hasPromoPercent && <span class="promo-percent">{promoPercentLabel}</span>}
+            {hasDiscount && <span class="promo-percent">-{promoPercent}%</span>}
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Floating button to open popup -->
-<button id="popup-trigger" class="bp-trigger" aria-label="Bekijk exclusieve aanbieding">
-  <span class="bp-trigger-gift" aria-hidden="true">🎁</span>
-  <span class="bp-trigger-text">{triggerText}</span>
+<button id="popup-trigger" class="bp-trigger" aria-label={triggerLabel}>
+  <span aria-hidden="true">🎁</span>
+  <span class="bp-trigger-text">{triggerLabel.replace('🎁 ', '')}</span>
 </button>
 
 <script>
@@ -96,36 +94,19 @@ const triggerText = hasPromo
 
     if (!popup) return;
 
-    let autoTimer: ReturnType<typeof setTimeout> | null = null;
-
-    // Only auto-show once per session
-    const autoShow = () => {
-      if (sessionStorage.getItem('emd-brand-popup-shown')) return;
-      autoTimer = setTimeout(() => {
-        openPopup();
-        sessionStorage.setItem('emd-brand-popup-shown', 'true');
-      }, 15000);
-    };
-
     const openPopup = () => {
       popup.classList.add('is-open');
       document.body.style.overflow = 'hidden';
-      // Hide trigger when popup is open
       if (trigger) trigger.style.display = 'none';
     };
 
     const closePopup = () => {
       popup.classList.remove('is-open');
       document.body.style.overflow = '';
-      if (autoTimer) clearTimeout(autoTimer);
-      // Show trigger again after closing
       if (trigger) trigger.style.display = '';
     };
 
-    // Auto show after 15s
-    autoShow();
-
-    // Manual open from floating button
+    // Manual open only from floating button
     if (trigger) trigger.addEventListener('click', openPopup);
 
     // Close handlers
@@ -135,7 +116,6 @@ const triggerText = hasPromo
     const escHandler = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && popup.classList.contains('is-open')) {
         closePopup();
-        document.removeEventListener('keydown', escHandler);
       }
     };
     document.addEventListener('keydown', escHandler);
@@ -252,7 +232,7 @@ const triggerText = hasPromo
     background: #d66a12;
     transform: translateY(-2px);
   }
-  .bp-trigger-gift { font-size: 1.1rem; line-height: 1; }
+  .bp-trigger svg { flex-shrink: 0; }
 
   @media (max-width: 767px) {
     .bp-trigger {
