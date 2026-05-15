@@ -91,7 +91,13 @@ const productSchema = (p: typeof config.products[number]) => ({
               <p><strong>IM8</strong> staat op plaats 2 omdat het als premium all-in-one veel breder is. Wie hydratatie wil combineren met dagelijkse micronutriënten, krijgt daar de sterkste formule. <strong>Instant Hydration</strong> staat op plaats 3 omdat sticks praktischer zijn voor onderweg, training, reizen en warme dagen.</p>
               <p>Deze gids is bewust gebouwd rond koopintentie, niet rond algemene gezondheidsclaims. De Nederlandse zoekvraag is concreet: mensen willen weten welk elektrolytenpoeder ze moeten kopen, wanneer het nuttig is en welk product past bij sport, hitte, vasten of dagelijkse hydratatie.</p>
             </section>
-            <section id="ranking-methodologie" class="methodology-box">
+            <TableOfContents items={config.tocItems} />
+
+            <section id="ranking" class="comparatif-cards">
+              {config.products.map((product) => (<div id={`product-${product.slug}`}><ComparatorCard product={product} /></div>))}
+            </section>
+
+        <section id="ranking-methodologie" class="methodology-box">
               <h2>Hoe we de producten hebben gerangschikt</h2>
               <p>Onze rangschikking combineert redactionele en praktische criteria, zodat de keuze niet alleen afhangt van prijs of korting.</p>
               <ul>
@@ -106,12 +112,6 @@ const productSchema = (p: typeof config.products[number]) => ({
               <p class="methodology-box__disclaimer"><strong>Redactionele noot.</strong> Onze selectie kijkt vooral naar formule, duidelijkheid van het aanbod en aansluiting op de behoefte van deze pagina, niet alleen naar prijs of marketingclaims.</p>
             </section>
 
-
-            <TableOfContents items={config.tocItems} />
-
-            <section id="ranking" class="comparatif-cards">
-              {config.products.map((product) => (<div id={`product-${product.slug}`}><ComparatorCard product={product} /></div>))}
-            </section>
 
             <section id="methodiek" class="rich-text seo-guide">
               <h2>Hoe we de beste elektrolyten hebben beoordeeld</h2>
