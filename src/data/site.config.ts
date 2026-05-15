@@ -239,10 +239,10 @@ const config: SiteConfig = {
   products,
   tocItems: [{ id: 'introduction', label: 'Korte conclusie' }, { id: 'ranking', label: 'Ranking' }, { id: 'methodiek', label: 'Methodiek' }, { id: 'keuzehulp', label: 'Keuzehulp' }, { id: 'situaties', label: 'Gebruik' }, { id: 'verdict', label: 'Eindoordeel' }, { id: 'faq', label: 'FAQ' }],
   pages: [
-    { type: 'comparatif', label: 'Vergelijking', slug: '/' },
-    { type: 'blog', label: 'Zonder suiker', slug: '/elektrolyten-zonder-suiker/' },
-    { type: 'blog', label: 'Vasten', slug: '/elektrolyten-vasten/' },
-    { type: 'blog', label: 'Poeder/tabletten', slug: '/elektrolyten-poeder-of-tabletten/' },
+    { type: 'comparatif', label: 'Vergelijking', slug: '/', image: '/images/content/electrolytes-nl-home-hero.webp' },
+    { type: 'blog', label: 'Zonder suiker', slug: '/elektrolyten-zonder-suiker/', image: '/images/content/electrolytes-nl-sugar-free-hero.webp' },
+    { type: 'blog', label: 'Vasten', slug: '/elektrolyten-vasten/', image: '/images/content/electrolytes-nl-fasting-hero.webp' },
+    { type: 'blog', label: 'Poeder/tabletten', slug: '/elektrolyten-poeder-of-tabletten/', image: '/images/content/electrolytes-nl-powder-tablets-hero.webp' },
   ],
 };
 
