@@ -10,6 +10,7 @@ import ContentImage from '@/components/ContentImage.astro';
 import InnerNote from '@/components/InnerNote.astro';
 import config from '@/data/site.config';
 import AuthorBioCard from '@/components/AuthorBioCard.astro';
+import ArticleGrid from '@/components/ArticleGrid.astro';
 
 const clearly = config.products.find((item) => item.brand === 'Clearly')!;
 const pageTitle = 'Elektrolyten zonder suiker: beste opties zonder suikerpiek';
@@ -92,6 +93,7 @@ const faq = [
 
 
   </div><aside class="sidebar-column"><div class="sidebar-sticky"><SidebarCTA logoSrc={clearly.brandLogo} productName={clearly.name} brandName={clearly.brand} promoCode={clearly.promoCode} promoPercent={clearly.promoPercent} originalPrice={clearly.originalPrice} discountPrice={clearly.discountPrice} ctaLink={clearly.affiliateLink} heroImage={clearly.image} rating={clearly.rating} reviewCount={clearly.reviewCount} /></div></aside></div></div></div></main>
+  <ArticleGrid />
 </BaseLayout>
 
 <style>
