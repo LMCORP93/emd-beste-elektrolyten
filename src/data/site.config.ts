@@ -33,7 +33,7 @@ const products: Product[] = [
     discountPrice: '25.50€',
     affiliateLink: 'https://taap.it/clearly-electrolytes',
     origin: '🇳🇱 Nederland',
-    availability: 'Online beschikbaar',
+    availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Elektrolyten poeder zonder suiker',
     pros: [
       'Nederlandse merkfit en duidelijke elektrolyten positionering',
@@ -63,7 +63,7 @@ const products: Product[] = [
     discountPrice: '$100.80',
     affiliateLink: 'https://taap.it/im8health',
     origin: '🇺🇸 Verenigde Staten',
-    availability: 'Online beschikbaar',
+    availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Premium all-in-one drink zonder suiker',
     pros: [
       'Sterkste premiumformule in deze selectie',
@@ -93,7 +93,7 @@ const products: Product[] = [
     discountPrice: '29.85€',
     affiliateLink: 'https://taap.it/instant-hydration',
     origin: '🇺🇸 Verenigde Staten',
-    availability: 'Online beschikbaar',
+    availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Elektrolyten sticks zonder suiker',
     pros: [
       'Praktische sticks voor sporttas, reizen en warme dagen',
@@ -123,7 +123,7 @@ const products: Product[] = [
     discountPrice: '$33.15',
     affiliateLink: 'https://collabs.shop/fa4rmo',
     origin: '🇨🇭 Zwitserland',
-    availability: 'Online beschikbaar',
+    availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Suikervrije mineralen- en vitaminendrank',
     pros: [
       'Schone premium positionering met vitamines en mineralen',
@@ -153,7 +153,7 @@ const products: Product[] = [
     discountPrice: '6.68€',
     affiliateLink: 'https://fnty.co/c/r-zPRSqZPp',
     origin: '🇫🇷 Frankrijk',
-    availability: 'Online beschikbaar',
+    availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Bruistabletten met elektrolyten',
     pros: [
       'Zeer betaalbare sportoptie',
@@ -183,7 +183,7 @@ const products: Product[] = [
     discountPrice: '26.95€',
     affiliateLink: 'https://dayneeds.com',
     origin: '🇪🇺 Europa',
-    availability: 'Online beschikbaar',
+    availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Elektrolyten poeder voor sport en dagelijks gebruik',
     pros: [
       'Solide extra kandidaat voor kopers die poeder zoeken',
