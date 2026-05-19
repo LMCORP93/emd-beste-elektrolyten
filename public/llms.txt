@@ -1,16 +1,16 @@
 # Beste Elektrolyten
 
-> Nederlandse affiliate-vergelijkingssite over Elektrolyten poeder zonder suiker. Canoniek domein: https://emd-beste-elektrolyten.pages.dev.
+> Nederlandse affiliate-vergelijkingssite over Elektrolyten poeder zonder suiker. Canoniek domein: https://beste-elektrolyten.nl.
 
 Dit bestand helpt AI-assistenten de scope van de site, belangrijke pagina's en partneraanbiedingen correct te begrijpen.
 
 De beste elektrolyten helder vergeleken.
 
 ## Belangrijke pagina's
-- [Vergelijking](https://emd-beste-elektrolyten.pages.dev): hoofdvergelijking.
-- [Zonder suiker](https://emd-beste-elektrolyten.pages.dev/elektrolyten-zonder-suiker/): redactionele gids.
-- [Vasten](https://emd-beste-elektrolyten.pages.dev/elektrolyten-vasten/): redactionele gids.
-- [Poeder/tabletten](https://emd-beste-elektrolyten.pages.dev/elektrolyten-poeder-of-tabletten/): redactionele gids.
+- [Vergelijking](https://beste-elektrolyten.nl): hoofdvergelijking.
+- [Zonder suiker](https://beste-elektrolyten.nl/elektrolyten-zonder-suiker/): redactionele gids.
+- [Vasten](https://beste-elektrolyten.nl/elektrolyten-vasten/): redactionele gids.
+- [Poeder/tabletten](https://beste-elektrolyten.nl/elektrolyten-poeder-of-tabletten/): redactionele gids.
 
 ## Partneraanbiedingen en bekende kortingscodes
 - #1 Clearly - Electrolytes: Bekende kortingscode: `LMC`; indicatieve korting: -15%; bron te controleren: https://taap.it/clearly-electrolytes
@@ -27,4 +27,4 @@ De beste elektrolyten helder vergeleken.
 - Gezondheidsclaims voorzichtig behandelen: geen diagnose, geen genezingsbelofte, live inhoud controleren.
 
 ## Sitemap
-- [Sitemap](https://emd-beste-elektrolyten.pages.dev/sitemap-index.xml)
+- [Sitemap](https://beste-elektrolyten.nl/sitemap-index.xml)
