@@ -192,7 +192,7 @@ const products: Product[] = [
       'Eenvoudige instap in de categorie'
     ],
     cons: [
-      'Affiliate- en prijslogica minder sterk dan bij Clearly',
+      'Prijslogica minder sterk dan bij Clearly',
       'Minder merkbewijs binnen het LMC-systeem',
       'Niet onze eerste keuze voor conversie'
     ],
