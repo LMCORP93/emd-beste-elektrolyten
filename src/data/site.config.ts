@@ -46,7 +46,7 @@ const products: Product[] = [
       'Minder brede micronutriëntenformule dan IM8',
       'Smaak en zoetheid blijven persoonlijk'
     ],
-    description: 'Clearly staat op nummer 1 omdat het de Nederlandse zoekintentie het best raakt: elektrolyten poeder zonder suiker, een duidelijke mineralenlogica, lokale merkfit en een prijs die met de LMC-code logisch wordt voor dagelijks gebruik.'
+    description: 'Clearly staat op nummer 1 omdat het voor Nederlandse kopers het meest directe antwoord biedt: elektrolyten poeder zonder suiker, een duidelijke mineralenlogica, lokale merkfit en een prijs die met de LMC-code logisch wordt voor dagelijks gebruik.'
   },
   {
     rank: 2,
@@ -229,7 +229,7 @@ const config: SiteConfig = {
   pros: ['Duidelijke focus op elektrolyten poeder', 'Relevant voor sport, warmte, vasten, reizen en dagelijks gebruik', 'Ranking combineert poeder, sticks en premium daily-formules'],
   cons: ['Sommige producten zijn breder dan klassieke elektrolyten', 'Prijzen en beschikbaarheid kunnen per land veranderen'],
   faq: [
-    { question: 'Wat zijn de beste elektrolyten in Nederland?', answer: 'Onze nummer 1 is Clearly, omdat het product de zoekintentie het meest direct beantwoordt: elektrolyten poeder zonder suiker, duidelijke mineralen en een goede prijs na LMC-code. IM8 is de beste premium all-in-one en Instant Hydration de beste stick-optie.' },
+    { question: 'Wat zijn de beste elektrolyten in Nederland?', answer: 'Onze nummer 1 is Clearly, omdat het product het meest direct biedt wat kopers meestal zoeken: elektrolyten poeder zonder suiker, duidelijke mineralen en een goede prijs na LMC-code. IM8 is de beste premium all-in-one en Instant Hydration de beste stick-optie.' },
     { question: 'Is elektrolyten poeder beter dan een sportdrank?', answer: 'Voor veel situaties wel, vooral als je geen extra suiker wilt. Bij lange duursport kan koolhydraatrijke sportdrank nog steeds nuttig zijn. Voor dagelijks gebruik, hitte, vasten of lichte training is een suikervrij elektrolyten poeder vaak logischer.' },
     { question: 'Wanneer neem je elektrolyten?', answer: 'Elektrolyten zijn vooral interessant bij veel zweten, warm weer, sauna, reizen, sport, low-carb eten of vasten. Wie weinig zweet en gevarieerd eet, heeft ze niet automatisch elke dag nodig.' },
     { question: 'Waar moet je op letten bij elektrolyten poeder?', answer: 'Kijk eerst naar natrium, daarna naar kalium, magnesium, calcium, zoetstoffen, porties, prijs per portie en of het product past bij jouw situatie.' },
