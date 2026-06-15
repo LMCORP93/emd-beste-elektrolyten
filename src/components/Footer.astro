@@ -50,9 +50,9 @@ const guideLinks = navLinks
 
 // Legal / information links
 const infoLinks: NavLink[] = [
-  { label: 'Privacy', href: '/datenschutz/' },
-  { label: 'Legal', href: '/impressum/' },
-  { label: 'contact [at] [domaine-du-site]', href: '#contact' },
+  { label: 'Privacybeleid', href: '/datenschutz/' },
+  { label: 'Juridische informatie', href: '/impressum/' },
+  { label: 'Contact', href: '/impressum/#contact' },
 ];
 ---
 
@@ -75,9 +75,9 @@ const infoLinks: NavLink[] = [
         </div>
       </div>
 
-      <!-- Column 2: Information -->
+      <!-- Column 2: Informatie -->
       <div class="footer_colonne">
-        <div class="footer_col-title">Information</div>
+        <div class="footer_col-title">Informatie</div>
         <div class="footer_wrapper-links">
           {infoLinks.map((link) => (
             <a href={link.href} class="footer_link">
