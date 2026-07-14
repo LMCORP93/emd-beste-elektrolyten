@@ -421,7 +421,7 @@ html {
   opacity: 1;
 }
 
-/* LMC compact content spacing standard: max 1rem vertical rhythm outside hero/banner. */
+/* Compact content spacing standard: max 1rem vertical rhythm outside hero/banner. */
 .content-column > * {
   margin-top: 0 !important;
   margin-bottom: 0 !important;

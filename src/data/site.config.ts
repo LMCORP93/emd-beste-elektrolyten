@@ -27,8 +27,8 @@ const products: Product[] = [
     brandLogo: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/68dfaffbcd9575da42dea912_67604f816f6f25a217f35605_Clearly_-_Dark_Blue_150x.avif',
     rating: 8.8,
     reviewCount: 1,
-    promoCode: 'LMC',
-    promoPercent: 15,
+    promoCode: '',
+    promoPercent: 0,
     originalPrice: '30.00€',
     discountPrice: '25.50€',
     affiliateLink: 'https://taap.it/clearly-electrolytes',
@@ -39,14 +39,14 @@ const products: Product[] = [
       'Nederlandse merkfit en duidelijke elektrolyten positionering',
       'Suikervrij poeder met natrium, kalium, magnesium en calcium',
       'Sterke match voor sport, warmte, reizen, vasten en dagelijks gebruik',
-      '60 porties per pot en goede prijs na LMC-code'
+      '60 porties per pot en duidelijke prijslogica'
     ],
     cons: [
       'Pot is minder handig onderweg dan losse sticks',
       'Minder brede micronutriëntenformule dan IM8',
       'Smaak en zoetheid blijven persoonlijk'
     ],
-    description: 'Clearly staat op nummer 1 omdat het voor Nederlandse kopers het meest directe antwoord biedt: elektrolyten poeder zonder suiker, een duidelijke mineralenlogica, lokale merkfit en een prijs die met de LMC-code logisch wordt voor dagelijks gebruik.'
+    description: 'Clearly staat op nummer 1 omdat het voor Nederlandse kopers het meest directe antwoord biedt: elektrolyten poeder zonder suiker, een duidelijke mineralenlogica, lokale merkfit en een prijs die logisch blijft voor dagelijks gebruik.'
   },
   {
     rank: 2,
@@ -57,8 +57,8 @@ const products: Product[] = [
     brandLogo: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/69380c53746ebfad67adf684_Header-Logo-New.webp',
     rating: 8.6,
     reviewCount: 500,
-    promoCode: 'LMC',
-    promoPercent: 10,
+    promoCode: '',
+    promoPercent: 0,
     originalPrice: '$112.00',
     discountPrice: '$100.80',
     affiliateLink: 'https://taap.it/im8health',
@@ -87,8 +87,8 @@ const products: Product[] = [
     brandLogo: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/697f3f7c667a50a281c9875b_header-logo.webp',
     rating: 8.1,
     reviewCount: 9000,
-    promoCode: 'KEVIN01488',
-    promoPercent: 10,
+    promoCode: '',
+    promoPercent: 0,
     originalPrice: '33.17€',
     discountPrice: '29.85€',
     affiliateLink: 'https://taap.it/instant-hydration',
@@ -117,8 +117,8 @@ const products: Product[] = [
     brandLogo: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/6977d0fa520868e58a29bb0d_t%C3%A9l%C3%A9charger__1__1-removebg-preview%201.svg',
     rating: 7.9,
     reviewCount: 100,
-    promoCode: 'CLUBLIONS',
-    promoPercent: 15,
+    promoCode: '',
+    promoPercent: 0,
     originalPrice: '$39.00',
     discountPrice: '$33.15',
     affiliateLink: 'https://collabs.shop/fa4rmo',
@@ -147,8 +147,8 @@ const products: Product[] = [
     brandLogo: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/698c4fc5d9578425bda69d73_punchpower-logo-e1693550769341.png',
     rating: 7.5,
     reviewCount: 700,
-    promoCode: 'LMC20',
-    promoPercent: 20,
+    promoCode: '',
+    promoPercent: 0,
     originalPrice: '8.90€',
     discountPrice: '6.68€',
     affiliateLink: 'https://fnty.co/c/r-zPRSqZPp',
@@ -177,8 +177,8 @@ const products: Product[] = [
     brandLogo: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/698e54a13b99cb99781ae979_logo-green.svg',
     rating: 7.3,
     reviewCount: 120,
-    promoCode: 'LMC',
-    promoPercent: 10,
+    promoCode: '',
+    promoPercent: 0,
     originalPrice: '29.95€',
     discountPrice: '26.95€',
     affiliateLink: 'https://dayneeds.com',
@@ -193,8 +193,8 @@ const products: Product[] = [
     ],
     cons: [
       'Prijslogica minder sterk dan bij Clearly',
-      'Minder merkbewijs binnen het LMC-systeem',
-      'Niet onze eerste keuze voor conversie'
+      'Minder openbaar merkbewijs in Nederland',
+      'Niet de eerste keuze voor de meeste kopers'
     ],
     description: 'Dayneeds blijft een nuttige vergelijkingsoptie voor wie meerdere poeders wil bekijken. Het haalt de top 3 niet, maar helpt om Clearly en de premiumalternatieven beter te plaatsen.'
   }
@@ -229,7 +229,7 @@ const config: SiteConfig = {
   pros: ['Duidelijke focus op elektrolyten poeder', 'Relevant voor sport, warmte, vasten, reizen en dagelijks gebruik', 'Ranking combineert poeder, sticks en premium daily-formules'],
   cons: ['Sommige producten zijn breder dan klassieke elektrolyten', 'Prijzen en beschikbaarheid kunnen per land veranderen'],
   faq: [
-    { question: 'Wat zijn de beste elektrolyten in Nederland?', answer: 'Onze nummer 1 is Clearly, omdat het product het meest direct biedt wat kopers meestal zoeken: elektrolyten poeder zonder suiker, duidelijke mineralen en een goede prijs na LMC-code. IM8 is de beste premium all-in-one en Instant Hydration de beste stick-optie.' },
+    { question: 'Wat zijn de beste elektrolyten in Nederland?', answer: 'Onze nummer 1 is Clearly, omdat het product het meest direct biedt wat kopers meestal zoeken: elektrolyten poeder zonder suiker, duidelijke mineralen en een goede prijs per portie. IM8 is de beste premium all-in-one en Instant Hydration de beste stick-optie.' },
     { question: 'Is elektrolyten poeder beter dan een sportdrank?', answer: 'Voor veel situaties wel, vooral als je geen extra suiker wilt. Bij lange duursport kan koolhydraatrijke sportdrank nog steeds nuttig zijn. Voor dagelijks gebruik, hitte, vasten of lichte training is een suikervrij elektrolyten poeder vaak logischer.' },
     { question: 'Wanneer neem je elektrolyten?', answer: 'Elektrolyten zijn vooral interessant bij veel zweten, warm weer, sauna, reizen, sport, low-carb eten of vasten. Wie weinig zweet en gevarieerd eet, heeft ze niet automatisch elke dag nodig.' },
     { question: 'Waar moet je op letten bij elektrolyten poeder?', answer: 'Kijk eerst naar natrium, daarna naar kalium, magnesium, calcium, zoetstoffen, porties, prijs per portie en of het product past bij jouw situatie.' },
