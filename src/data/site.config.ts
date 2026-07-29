@@ -241,7 +241,7 @@ const config: SiteConfig = {
   pages: [
     { type: 'comparatif', label: 'Vergelijking', slug: '/', image: '/images/content/electrolytes-nl-home-hero.webp' },
     { type: 'blog', label: 'Zonder suiker', slug: '/elektrolyten-zonder-suiker/', image: '/images/content/electrolytes-nl-sugar-free-hero.webp' },
-    { type: 'blog', label: 'Elektrolyten tijdens vasten', slug: '/elektrolyten-vasten/', image: '/images/content/electrolytes-nl-fasting-hero.webp' },
+    { type: 'blog', label: 'Elektrolyten vasten', slug: '/elektrolyten-vasten/', image: '/images/content/electrolytes-nl-fasting-hero.webp' },
     { type: 'blog', label: 'Poeder/tabletten', slug: '/elektrolyten-poeder-of-tabletten/', image: '/images/content/electrolytes-nl-powder-tablets-hero.webp' },
   ],
 };
