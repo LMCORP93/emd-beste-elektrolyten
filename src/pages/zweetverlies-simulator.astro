@@ -1,0 +1,292 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogHero from '@/components/BlogHero.astro';
+import SidebarCTA from '@/components/SidebarCTA.astro';
+import FAQSection from '@/components/FAQSection.astro';
+import config from '@/data/site.config';
+import AuthorBioCard from '@/components/AuthorBioCard.astro';
+import ArticleGrid from '@/components/ArticleGrid.astro';
+
+const clearly = config.products.find((item) => item.brand === 'Clearly')!;
+const pageTitle = 'Zweetverlies simulator: hoeveel vocht en zout verlies je bij sport?';
+const pageDescription = 'Simuleer je zweetverlies en natriumverlies op basis van sport, duur, weer, gewicht en intensiteit. Krijg direct een aanbeveling voor hydratatie en elektrolyten.';
+
+const faq = [
+  { question: 'Hoe accuraat is de zweetverlies simulator?', answer: 'De simulator gebruikt gemiddelde zweetsnelheden per sport uit publiek beschikbaar onderzoek. Individueel varieert dit sterk: sommige mensen zweten tot twee keer meer dan anderen bij dezelfde inspanning. Beschouw de uitkomst als richtcijfer, niet als exacte meting.' },
+  { question: 'Waarom is natrium belangrijker dan andere mineralen bij sport?', answer: 'Van alle elektrolyten verlies je het meeste natrium via zweet. Kalium, magnesium en calcium worden ook uitgescheiden, maar in veel kleinere hoeveelheden. Voor de meeste sporters is een gerichte natrium-aanvulling het meest effectief.' },
+  { question: 'Moet ik altijd elektrolyten drinken tijdens sport?', answer: 'Nee. Voor inspanning korter dan 60 minuten in gematigde omstandigheden is water meestal voldoende. Elektrolyten worden logisch bij langere trainingen, warme dagen of als je zoutplekken op je kleding krijgt.' },
+  { question: 'Wat is een normale zweetsnelheid?', answer: 'Bij matige inspanning verlies je gemiddeld 500-1000 ml per uur, bij intensieve sport in de hitte kan dat oplopen tot 2000-2500 ml per uur. De simulator toont een schatting voor jouw specifieke combinatie.' },
+];
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'WebApplication', name:'Zweetverlies simulator', description:pageDescription, url:new URL('/zweetverlies-simulator/', config.domain).toString(), applicationCategory:'HealthApplication', operatingSystem:'Any', offers:{'@type':'Offer', price:0, priceCurrency:'EUR'} })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'BreadcrumbList', itemListElement:[{'@type':'ListItem',position:1,name:'Beste Elektrolyten',item:config.domain},{'@type':'ListItem',position:2,name:'Zweetverlies simulator',item:new URL('/zweetverlies-simulator/', config.domain).toString()}] })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'FAQPage', mainEntity: faq.map((item) => ({ '@type':'Question', name:item.question, acceptedAnswer:{ '@type':'Answer', text:item.answer } })) })} />
+  <BlogHero
+    title="Zweetverlies simulator voor sporters"
+    description="Bereken in 30 seconden hoeveel vocht en natrium je verliest tijdens hardlopen, wielrennen, gym, tennis of hiking. Krijg meteen een concrete hydratatie-aanbeveling."
+    author={config.author.name}
+    authorAvatar={config.author.avatar}
+    date="9 augustus 2026"
+    readingTime="4 min. + simulator"
+    breadcrumbs={[{ label: 'Zweetverlies simulator', href: '/zweetverlies-simulator/' }]}
+    bannerImage="/images/content/electrolytes-nl-home-hero.webp"
+    product={{ name: clearly.name, image: clearly.image, promoCode: clearly.promoCode, promoPercent: clearly.promoPercent, originalPrice: clearly.originalPrice, discountPrice: clearly.discountPrice, affiliateLink: clearly.affiliateLink }}
+    heroButton={{ text: 'Start de simulator', href: '#intro' }}
+    showOfferBlock={false}
+  />
+
+  <main style="background-color:#ffffff;">
+    <div class="container-large padding-global">
+      <div class="padding-section-medium">
+        <div class="blog-grid">
+          <div class="content-column">
+
+            <section id="intro" class="sim-wrap">
+              <div class="sim-header">
+                <h2>Simuleer je zweetverlies</h2>
+                <p class="sim-sub">Kies je sport, duur, weer, gewicht en intensiteit. Uitkomst verandert live.</p>
+              </div>
+
+              <div class="sim-grid">
+                <div class="sim-input">
+                  <label for="sim-sport">Sport</label>
+                  <select id="sim-sport">
+                    <option value="1000">Hardlopen</option>
+                    <option value="800">Wielrennen</option>
+                    <option value="600">Gym / krachttraining</option>
+                    <option value="800">Tennis / padel</option>
+                    <option value="700">Voetbal / hockey</option>
+                    <option value="500">Wandelen / hiking</option>
+                    <option value="1400">Sauna</option>
+                  </select>
+                </div>
+
+                <div class="sim-input">
+                  <div class="sim-label-row">
+                    <label for="sim-duration">Duur</label>
+                    <span class="sim-value"><span id="sim-duration-out">60</span> min</span>
+                  </div>
+                  <input id="sim-duration" type="range" min="10" max="240" value="60" step="5" />
+                </div>
+
+                <div class="sim-input">
+                  <label for="sim-weer">Weer</label>
+                  <select id="sim-weer">
+                    <option value="0.7">Koel (onder 15°C)</option>
+                    <option value="1.0" selected>Mild (15-22°C)</option>
+                    <option value="1.3">Warm (22-28°C)</option>
+                    <option value="1.6">Heet (boven 28°C)</option>
+                  </select>
+                </div>
+
+                <div class="sim-input">
+                  <div class="sim-label-row">
+                    <label for="sim-weight">Gewicht</label>
+                    <span class="sim-value"><span id="sim-weight-out">70</span> kg</span>
+                  </div>
+                  <input id="sim-weight" type="range" min="40" max="130" value="70" step="1" />
+                </div>
+
+                <div class="sim-input">
+                  <label for="sim-effort">Intensiteit</label>
+                  <select id="sim-effort">
+                    <option value="0.7">Rustig (praten gaat makkelijk)</option>
+                    <option value="1.0" selected>Matig (praten in korte zinnen)</option>
+                    <option value="1.3">Intensief (buiten adem)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="sim-results">
+                <div class="sim-result-header">Geschat verlies tijdens deze sessie</div>
+                <div class="sim-result-grid">
+                  <div class="sim-metric">
+                    <div class="sim-metric-icon">💧</div>
+                    <div class="sim-metric-name">Vochtverlies</div>
+                    <div class="sim-metric-value"><span id="out-fluid">1.0</span> L</div>
+                    <div class="sim-metric-sub"><span id="out-fluid-ml">1000</span> ml</div>
+                  </div>
+                  <div class="sim-metric">
+                    <div class="sim-metric-icon">🧂</div>
+                    <div class="sim-metric-name">Natriumverlies</div>
+                    <div class="sim-metric-value"><span id="out-na">500</span> mg</div>
+                    <div class="sim-metric-sub">≈ <span id="out-na-salt">1.3</span> g zout</div>
+                  </div>
+                  <div class="sim-metric">
+                    <div class="sim-metric-icon">🥤</div>
+                    <div class="sim-metric-name">Aanbevolen Clearly</div>
+                    <div class="sim-metric-value"><span id="out-portions">1</span></div>
+                    <div class="sim-metric-sub">portie(s)</div>
+                  </div>
+                </div>
+
+                <div class="sim-reco">
+                  <div class="sim-reco-title">Onze aanbeveling</div>
+                  <div class="sim-reco-body" id="sim-reco-body">Voor deze sessie is één portie Clearly na afloop meestal voldoende. Drink daarnaast ongeveer 500 ml water rond je training.</div>
+                  <a href={clearly.affiliateLink} target="_blank" rel="nofollow sponsored" class="sim-cta">Bekijk Clearly (code {clearly.promoCode} = -{clearly.promoPercent}%)</a>
+                </div>
+              </div>
+
+              <p class="sim-disclaimer">Educatieve schatting op basis van gemiddelde zweetsnelheden per sport. Individueel varieert tot 100%. Bij extreem lange inspanningen, medische aandoeningen of medicatie is aanvullend medisch advies verstandig.</p>
+            </section>
+
+            <section id="hoe-werkt-het" class="rich-text seo-guide">
+              <h2>Hoe werkt de zweetverlies simulator?</h2>
+              <p>De simulator combineert vier variabelen: de gemiddelde zweetsnelheid van jouw sport, de duur van je training, het weer en je gewicht. Voor natriumverlies gebruiken we een gemiddelde van 500 mg natrium per liter zweet, wat correspondeert met de meeste sporters die niet officieel als "zoute zweter" worden beschouwd.</p>
+              <p>Referentiewaarden per sport (ml per uur bij matige intensiteit, mild weer):</p>
+              <ul>
+                <li><strong>Hardlopen:</strong> ~1 000 ml/u (varieert 800-1 500 afhankelijk van tempo)</li>
+                <li><strong>Wielrennen:</strong> ~800 ml/u (koeling door wind reduceert zweet)</li>
+                <li><strong>Tennis / padel:</strong> ~800 ml/u (intervals + zon)</li>
+                <li><strong>Voetbal / hockey:</strong> ~700 ml/u (mix intensief en rust)</li>
+                <li><strong>Gym / krachttraining:</strong> ~600 ml/u (lager door pauzes)</li>
+                <li><strong>Wandelen / hiking:</strong> ~500 ml/u (behalve steile hellingen in de zon)</li>
+                <li><strong>Sauna:</strong> ~1 400 ml/u (uitsluitend passieve warmte)</li>
+              </ul>
+              <p>Weer en intensiteit werken als multipliers. Een intensieve gymtraining in de zomer kan meer zweet opleveren dan een rustige hardloopsessie in de winter.</p>
+            </section>
+
+            <section id="waarom-natrium" class="rich-text seo-guide">
+              <h2>Waarom vooral natrium aanvullen?</h2>
+              <p>Van alle elektrolyten verlies je het meeste natrium via zweet. Voor 1 liter zweet is dat gemiddeld 500 mg natrium (of ongeveer 1,3 gram zout). Bij zoute zweters kan dat oplopen tot 1 200-1 500 mg per liter.</p>
+              <p>Kalium, magnesium en calcium verlies je ook, maar in veel kleinere hoeveelheden (respectievelijk ~200 mg, ~10 mg en ~20 mg per liter zweet). Deze mineralen krijg je meestal beter binnen via voeding. Voor snelle en gerichte aanvulling na sport is een suikervrij elektrolytenpoeder met een duidelijke natrium-dosering het meest praktisch.</p>
+              <p>Clearly bevat per portie ongeveer 800 mg natrium en past daarmee bij een gemiddelde sessie van 1,5 tot 2 uur matige tot intensieve sport. Voor de exacte behoefte over een hele dag kun je onze <a href="/elektrolyten-calculator/">elektrolyten calculator</a> gebruiken.</p>
+            </section>
+
+            <section id="voor-tijdens-na" class="rich-text seo-guide">
+              <h2>Voor, tijdens of na de training?</h2>
+              <h3>Voor de training</h3>
+              <p>Bij warm weer of hoge intensiteit kan een portie 30-60 minuten voor de start helpen om niet uitgedroogd te beginnen. Bij een normale sessie in gematigd weer is dit meestal niet nodig.</p>
+              <h3>Tijdens de training</h3>
+              <p>Voor sessies langer dan 60 minuten helpt elektrolyten tijdens de inspanning. Verspreid over kleine slokjes werkt beter voor de maag dan één grote hoeveelheid.</p>
+              <h3>Na de training</h3>
+              <p>Dit is voor de meeste sporters het belangrijkste moment. Na een intensieve sessie is één portie Clearly binnen 30 minuten na afloop een simpele en effectieve manier om je hydratatie en natrium te herstellen.</p>
+            </section>
+
+            <section id="faq" class="faq-section"><FAQSection faq={faq} title="Veelgestelde vragen" /></section>
+
+            <AuthorBioCard />
+          </div>
+
+          <aside class="sidebar-column">
+            <div class="sidebar-sticky">
+              <SidebarCTA logoSrc={clearly.brandLogo} productName={clearly.name} brandName={clearly.brand} promoCode={clearly.promoCode} promoPercent={clearly.promoPercent} originalPrice={clearly.originalPrice} discountPrice={clearly.discountPrice} ctaLink={clearly.affiliateLink} heroImage={clearly.image} rating={clearly.rating} reviewCount={clearly.reviewCount} />
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+  <ArticleGrid />
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    const CLEARLY_NA = 800;
+
+    const els = {
+      sport: document.getElementById('sim-sport'),
+      duration: document.getElementById('sim-duration'),
+      weer: document.getElementById('sim-weer'),
+      weight: document.getElementById('sim-weight'),
+      effort: document.getElementById('sim-effort'),
+      dOut: document.getElementById('sim-duration-out'),
+      wOut: document.getElementById('sim-weight-out'),
+      fluid: document.getElementById('out-fluid'),
+      fluidMl: document.getElementById('out-fluid-ml'),
+      na: document.getElementById('out-na'),
+      naSalt: document.getElementById('out-na-salt'),
+      portions: document.getElementById('out-portions'),
+      reco: document.getElementById('sim-reco-body'),
+    };
+
+    if (!els.sport) return;
+
+    function compute() {
+      const baseRate = parseFloat(els.sport.value);
+      const duration = parseFloat(els.duration.value);
+      const weer = parseFloat(els.weer.value);
+      const weight = parseFloat(els.weight.value);
+      const effort = parseFloat(els.effort.value);
+
+      const weightFactor = Math.sqrt(weight / 70);
+      const fluidMl = Math.round((baseRate * (duration / 60) * weer * effort * weightFactor) / 50) * 50;
+      const naMg = Math.round((fluidMl / 1000) * 500 / 10) * 10;
+      const saltG = (naMg / 400).toFixed(1);
+      const portions = Math.max(1, Math.round(naMg / CLEARLY_NA));
+
+      els.dOut.textContent = duration;
+      els.wOut.textContent = weight;
+      els.fluid.textContent = (fluidMl / 1000).toFixed(1);
+      els.fluidMl.textContent = fluidMl.toLocaleString('nl-NL');
+      els.na.textContent = naMg.toLocaleString('nl-NL');
+      els.naSalt.textContent = saltG;
+      els.portions.textContent = portions;
+
+      let reco = '';
+      if (duration >= 90 && weer >= 1.3) {
+        reco = 'Lange sessie in de warmte: neem één portie Clearly 30 minuten voor de start en één na afloop. Drink tijdens de sessie kleine slokjes water met eventueel een halve portie extra.';
+      } else if (duration >= 60 && effort >= 1.3) {
+        reco = 'Intensieve sessie langer dan een uur: één portie Clearly binnen 30 minuten na afloop is de meest efficiënte aanvulling. Drink daarnaast ongeveer ' + Math.round(fluidMl * 0.6) + ' ml water rond je training.';
+      } else if (duration >= 60) {
+        reco = 'Sessie langer dan een uur: één portie Clearly na afloop volstaat. Drink tijdens de sessie regelmatig kleine slokjes water.';
+      } else if (weer >= 1.3) {
+        reco = 'Korte sessie in de hitte: één portie Clearly na afloop helpt je hydratatie te herstellen. Voor korte inspanningen onder 60 minuten is water alleen vaak voldoende, tenzij je duidelijk veel zweet.';
+      } else {
+        reco = 'Korte, matige sessie: water is meestal voldoende. Als je regelmatig traint of merkt dat je snel duizelig wordt, kan één portie Clearly na afloop nog steeds nuttig zijn.';
+      }
+      els.reco.textContent = reco;
+    }
+
+    ['sport','duration','weer','weight','effort'].forEach(k => {
+      els[k].addEventListener('input', compute);
+      els[k].addEventListener('change', compute);
+    });
+    compute();
+  })();
+</script>
+
+<style>
+  .seo-guide { margin-top: 3rem; padding-top: 2rem; }
+  .seo-guide h2 { margin-bottom: 1rem; }
+  .seo-guide h3 { margin-top: 1.6rem; margin-bottom: .65rem; font-size: 1.22rem; font-weight: 700; color: #242424; }
+  .seo-guide p, .seo-guide ul { margin-bottom: 1rem; line-height: 1.7; color: #444; }
+  .seo-guide ul { margin: 1rem 0 1.5rem 1.25rem; }
+  .seo-guide li { margin-bottom: .65rem; }
+  .faq-section { margin-top: 3rem; padding-top: 2rem; }
+
+  .sim-wrap { margin: 2rem 0 2.5rem; padding: 1.75rem 1.5rem; background: #fffaf4; border: 1px solid #eee1d2; border-radius: 20px; }
+  .sim-header h2 { margin: 0 0 .3rem; font-size: 1.55rem; color: #242424; }
+  .sim-sub { margin: 0 0 1.5rem; color: #6f6f6f; font-size: .95rem; }
+  .sim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1.25rem; margin-bottom: 1.75rem; }
+  .sim-input { display: flex; flex-direction: column; gap: .5rem; }
+  .sim-input label { font-weight: 600; font-size: .92rem; color: #333; }
+  .sim-label-row { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+  .sim-value { font-weight: 700; color: #ef7a1a; font-size: .95rem; }
+  .sim-input input[type="range"] { width: 100%; accent-color: #ef7a1a; }
+  .sim-input select { padding: .55rem .7rem; border: 1px solid #ddd; border-radius: 10px; background: #fff; font-size: .95rem; color: #242424; cursor: pointer; font-family: inherit; }
+
+  .sim-results { margin-top: 1.5rem; padding: 1.4rem; background: #ffffff; border: 1px solid #eee1d2; border-radius: 16px; }
+  .sim-result-header { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #ef7a1a; margin-bottom: .9rem; }
+  .sim-result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; margin-bottom: 1.4rem; }
+  .sim-metric { padding: 1rem .85rem; background: #f8f4ec; border-radius: 12px; text-align: center; }
+  .sim-metric-icon { font-size: 1.8rem; margin-bottom: .3rem; }
+  .sim-metric-name { font-size: .82rem; color: #6f6f6f; margin-bottom: .3rem; }
+  .sim-metric-value { font-size: 1.55rem; font-weight: 800; color: #242424; margin-bottom: .3rem; line-height: 1.1; }
+  .sim-metric-sub { font-size: .78rem; color: #6f6f6f; }
+
+  .sim-reco { padding: 1.25rem; background: #fffaf4; border: 1px solid #eee1d2; border-radius: 14px; }
+  .sim-reco-title { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #ef7a1a; margin-bottom: .55rem; }
+  .sim-reco-body { color: #3b342d; line-height: 1.65; margin-bottom: 1rem; font-size: .98rem; }
+  .sim-cta { display: inline-flex; align-items: center; padding: .8rem 1.4rem; background: #ef7a1a; color: #fff; font-weight: 700; text-decoration: none; border-radius: 999px; font-size: .95rem; transition: opacity .15s; }
+  .sim-cta:hover { opacity: 0.9; }
+
+  .sim-disclaimer { margin-top: 1rem; padding: .75rem 1rem; background: #f4f2ec; border-radius: 10px; font-size: .82rem; color: #6f6f6f; line-height: 1.5; }
+
+  @media (max-width: 640px) {
+    .sim-grid { grid-template-columns: 1fr; }
+    .sim-result-grid { grid-template-columns: 1fr; }
+    .sim-wrap { padding: 1.25rem 1rem; }
+  }
+</style>

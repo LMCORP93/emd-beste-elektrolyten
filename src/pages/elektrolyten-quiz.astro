@@ -1,0 +1,320 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogHero from '@/components/BlogHero.astro';
+import SidebarCTA from '@/components/SidebarCTA.astro';
+import FAQSection from '@/components/FAQSection.astro';
+import config from '@/data/site.config';
+import AuthorBioCard from '@/components/AuthorBioCard.astro';
+import ArticleGrid from '@/components/ArticleGrid.astro';
+
+const clearly = config.products.find((item) => item.brand === 'Clearly')!;
+const pageTitle = 'Elektrolyten quiz: welk merk past bij jou in 2026?';
+const pageDescription = 'Beantwoord 6 korte vragen en ontdek welke elektrolyten het meest logisch zijn voor jouw doel: sport, vasten, kater, warmte of dagelijks gebruik.';
+
+const faq = [
+  { question: 'Hoe werkt de elektrolyten quiz?', answer: 'De quiz stelt 6 vragen over je doel, sportfrequentie, budget en voorkeur voor vorm en formule. Op basis van je antwoorden krijg je een persoonlijke top 1 uit onze vergelijking, plus een backup-optie.' },
+  { question: 'Is de quiz onafhankelijk?', answer: 'De quiz is redactioneel opgesteld en vertrekt van dezelfde criteria als onze vergelijking (formule, prijs per portie, gebruikssituatie, merkfit). We bevelen aan wat volgens ons het beste past, niet wat het meest oplevert.' },
+  { question: 'Moet ik mijn e-mail achterlaten?', answer: 'Nee. De uitkomst verschijnt direct in je scherm. Je e-mail achterlaten is optioneel en bedoeld voor wie later nog vragen wil stellen of een korte samenvatting per mail wil.' },
+  { question: 'Kan ik de quiz meerdere keren doen?', answer: 'Ja. Je antwoorden worden niet opgeslagen; herstart de pagina om opnieuw te beginnen. Handig als je verschillende scenario\'s wil vergelijken (bijvoorbeeld sport vs vasten).' },
+];
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'WebApplication', name:'Elektrolyten quiz', description:pageDescription, url:new URL('/elektrolyten-quiz/', config.domain).toString(), applicationCategory:'HealthApplication', operatingSystem:'Any', offers:{'@type':'Offer', price:0, priceCurrency:'EUR'} })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'BreadcrumbList', itemListElement:[{'@type':'ListItem',position:1,name:'Beste Elektrolyten',item:config.domain},{'@type':'ListItem',position:2,name:'Quiz',item:new URL('/elektrolyten-quiz/', config.domain).toString()}] })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'FAQPage', mainEntity: faq.map((item) => ({ '@type':'Question', name:item.question, acceptedAnswer:{ '@type':'Answer', text:item.answer } })) })} />
+  <BlogHero
+    title="Welke elektrolyten past bij jou?"
+    description="6 korte vragen en je weet welk merk uit onze top 6 het meest logisch is voor jouw doel, budget en voorkeur. Duurt 60 seconden."
+    author={config.author.name}
+    authorAvatar={config.author.avatar}
+    date="9 augustus 2026"
+    readingTime="1 min. + quiz"
+    breadcrumbs={[{ label: 'Quiz', href: '/elektrolyten-quiz/' }]}
+    bannerImage="/images/content/electrolytes-nl-home-hero.webp"
+    product={{ name: clearly.name, image: clearly.image, promoCode: clearly.promoCode, promoPercent: clearly.promoPercent, originalPrice: clearly.originalPrice, discountPrice: clearly.discountPrice, affiliateLink: clearly.affiliateLink }}
+    heroButton={{ text: 'Start de quiz', href: '#intro' }}
+    showOfferBlock={false}
+  />
+
+  <main style="background-color:#ffffff;">
+    <div class="container-large padding-global">
+      <div class="padding-section-medium">
+        <div class="blog-grid">
+          <div class="content-column">
+
+            <section id="intro" class="quiz-wrap">
+              <div class="quiz-header">
+                <div class="quiz-progress-track"><div class="quiz-progress-bar" id="quiz-progress" style="width: 0%"></div></div>
+                <div class="quiz-progress-label">Vraag <span id="quiz-current">1</span> van <span id="quiz-total">6</span></div>
+              </div>
+
+              <div class="quiz-body">
+                <div id="quiz-questions"></div>
+
+                <div id="quiz-result" style="display: none;">
+                  <div class="quiz-result-badge">Jouw match</div>
+                  <h2 class="quiz-result-title" id="quiz-result-title">Clearly Electrolytes</h2>
+                  <p class="quiz-result-subtitle" id="quiz-result-subtitle">Voor jouw doel is Clearly de meest logische keuze.</p>
+
+                  <div class="quiz-result-card" id="quiz-result-card"></div>
+
+                  <div class="quiz-result-cta">
+                    <a href="#" id="quiz-result-link" target="_blank" rel="nofollow sponsored" class="quiz-cta-primary">Bekijk het product</a>
+                    <button type="button" class="quiz-cta-secondary" onclick="window.__resetQuiz()">Quiz opnieuw doen</button>
+                  </div>
+
+                  <div class="quiz-alt">
+                    <div class="quiz-alt-label">Ook interessant</div>
+                    <div id="quiz-alt-body" class="quiz-alt-body"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="hoe-werkt-het" class="rich-text seo-guide">
+              <h2>Hoe werkt de quiz?</h2>
+              <p>De <strong>elektrolyten quiz</strong> vertrekt van de zes producten in <a href="/">onze vergelijking</a> en scoort ze per vraag op de criteria die je persoonlijk aangeeft: doel, sportfrequentie, budget, voorkeur voor poeder of sticks, tolerantie voor zoetstoffen en wat je belangrijkst vindt.</p>
+              <p>Elk antwoord voegt punten toe aan de producten die het beste passen bij dat criterium. Aan het einde tellen we alles op en tonen we je nummer 1, plus een sterke backup als je nog wilt vergelijken. Zo krijg je een keuze die op jouw situatie past, in plaats van een generieke top 3.</p>
+            </section>
+
+            <section id="waarom" class="rich-text seo-guide">
+              <h2>Waarom een quiz in plaats van gewoon vergelijken?</h2>
+              <p>Een vergelijkingstabel is nuttig, maar zegt niet welk product bij <em>jou</em> past. Iemand die één keer per week hardloopt heeft iets anders nodig dan iemand die dagelijks vast of vaak kampt met een kater na feestjes. De quiz vertaalt jouw context in een concrete aanbeveling zonder dat je zes reviews hoeft door te lezen.</p>
+              <p>Wil je toch de volledige vergelijking bekijken, ga dan naar <a href="/">de homepage</a>. Wil je precies weten hoeveel milligram natrium je per dag nodig hebt, gebruik dan onze <a href="/elektrolyten-calculator/">elektrolyten calculator</a>.</p>
+            </section>
+
+            <section id="faq" class="faq-section"><FAQSection faq={faq} title="Veelgestelde vragen" /></section>
+
+            <AuthorBioCard />
+          </div>
+
+          <aside class="sidebar-column">
+            <div class="sidebar-sticky">
+              <SidebarCTA logoSrc={clearly.brandLogo} productName={clearly.name} brandName={clearly.brand} promoCode={clearly.promoCode} promoPercent={clearly.promoPercent} originalPrice={clearly.originalPrice} discountPrice={clearly.discountPrice} ctaLink={clearly.affiliateLink} heroImage={clearly.image} rating={clearly.rating} reviewCount={clearly.reviewCount} />
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+  <ArticleGrid />
+</BaseLayout>
+
+<script is:inline set:html={`
+window.__quizData = ${JSON.stringify({
+  products: config.products.map(p => ({
+    brand: p.brand, name: p.name, image: p.image, brandLogo: p.brandLogo,
+    promoCode: p.promoCode, promoPercent: p.promoPercent,
+    originalPrice: p.originalPrice, discountPrice: p.discountPrice,
+    affiliateLink: p.affiliateLink, rating: p.rating, productType: p.productType
+  }))
+})};
+`} />
+
+<script is:inline>
+  (function() {
+    const D = window.__quizData;
+    const brands = D.products.map(p => p.brand);
+
+    // Scoring matrix - each answer adds points to specific brands
+    const questions = [
+      {
+        q: 'Waarvoor zoek je elektrolyten in de eerste plaats?',
+        options: [
+          { label: 'Sport en training', scores: { Clearly: 3, 'IM8': 2, 'Instant Hydration': 4, 'Punch Power': 3, 'Haura': 1, 'Dayneeds': 2 } },
+          { label: 'Vasten of low-carb / keto', scores: { Clearly: 5, 'IM8': 3, 'Instant Hydration': 2, 'Punch Power': 1, 'Haura': 2, 'Dayneeds': 2 } },
+          { label: 'Kater en herstel na alcohol', scores: { Clearly: 5, 'IM8': 3, 'Instant Hydration': 3, 'Punch Power': 1, 'Haura': 2, 'Dayneeds': 2 } },
+          { label: 'Dagelijkse hydratatie', scores: { Clearly: 4, 'IM8': 5, 'Instant Hydration': 2, 'Punch Power': 1, 'Haura': 4, 'Dayneeds': 3 } },
+          { label: 'Warmte en zweten', scores: { Clearly: 4, 'IM8': 2, 'Instant Hydration': 3, 'Punch Power': 3, 'Haura': 2, 'Dayneeds': 2 } },
+        ]
+      },
+      {
+        q: 'Hoe vaak train je per week?',
+        options: [
+          { label: 'Niet of nauwelijks', scores: { Clearly: 4, 'IM8': 5, 'Haura': 4, 'Instant Hydration': 1, 'Punch Power': 0, 'Dayneeds': 3 } },
+          { label: '1 tot 2 keer', scores: { Clearly: 5, 'IM8': 3, 'Haura': 3, 'Instant Hydration': 3, 'Punch Power': 2, 'Dayneeds': 3 } },
+          { label: '3 tot 4 keer', scores: { Clearly: 4, 'IM8': 2, 'Haura': 2, 'Instant Hydration': 4, 'Punch Power': 4, 'Dayneeds': 3 } },
+          { label: '5 keer of meer', scores: { Clearly: 3, 'IM8': 2, 'Haura': 1, 'Instant Hydration': 5, 'Punch Power': 5, 'Dayneeds': 2 } },
+        ]
+      },
+      {
+        q: 'Wat is jouw prijsgevoeligheid?',
+        options: [
+          { label: 'Zo goedkoop mogelijk', scores: { Clearly: 3, 'Punch Power': 5, 'Dayneeds': 4, 'Instant Hydration': 1, 'IM8': 0, 'Haura': 1 } },
+          { label: 'Prijs-kwaliteit balans', scores: { Clearly: 5, 'Instant Hydration': 3, 'Dayneeds': 3, 'Punch Power': 3, 'IM8': 1, 'Haura': 3 } },
+          { label: 'Kwaliteit boven prijs', scores: { Clearly: 3, 'IM8': 5, 'Haura': 5, 'Instant Hydration': 3, 'Punch Power': 1, 'Dayneeds': 2 } },
+        ]
+      },
+      {
+        q: 'Welke vorm heeft jouw voorkeur?',
+        options: [
+          { label: 'Poeder (pot)', scores: { Clearly: 5, 'IM8': 3, 'Punch Power': 2, 'Haura': 2, 'Dayneeds': 4, 'Instant Hydration': 1 } },
+          { label: 'Sticks of losse porties', scores: { Clearly: 1, 'Instant Hydration': 5, 'Punch Power': 3, 'IM8': 2, 'Haura': 2, 'Dayneeds': 1 } },
+          { label: 'Kant-en-klaar drinken', scores: { IM8: 5, 'Haura': 5, 'Clearly': 2, 'Instant Hydration': 2, 'Punch Power': 1, 'Dayneeds': 1 } },
+          { label: 'Geen voorkeur', scores: { Clearly: 3, 'IM8': 3, 'Instant Hydration': 3, 'Haura': 3, 'Punch Power': 2, 'Dayneeds': 2 } },
+        ]
+      },
+      {
+        q: 'Is suikervrij verplicht?',
+        options: [
+          { label: 'Ja, absoluut suikervrij', scores: { Clearly: 5, 'IM8': 4, 'Haura': 3, 'Instant Hydration': 3, 'Dayneeds': 3, 'Punch Power': 1 } },
+          { label: 'Bij voorkeur wel', scores: { Clearly: 4, 'IM8': 3, 'Haura': 3, 'Instant Hydration': 3, 'Dayneeds': 3, 'Punch Power': 2 } },
+          { label: 'Kan me weinig schelen', scores: { Clearly: 3, 'IM8': 2, 'Punch Power': 4, 'Instant Hydration': 3, 'Haura': 2, 'Dayneeds': 3 } },
+        ]
+      },
+      {
+        q: 'Wat vind je het belangrijkst in je product?',
+        options: [
+          { label: 'Hoge natrium-dosering', scores: { Clearly: 5, 'Instant Hydration': 4, 'Punch Power': 3, 'IM8': 2, 'Haura': 1, 'Dayneeds': 3 } },
+          { label: 'Brede micronutriëntenformule', scores: { IM8: 5, 'Haura': 5, 'Clearly': 3, 'Dayneeds': 2, 'Instant Hydration': 1, 'Punch Power': 1 } },
+          { label: 'Lekkere smaak', scores: { Instant Hydration: 4, 'IM8': 4, 'Haura': 3, 'Clearly': 3, 'Punch Power': 3, 'Dayneeds': 2 } },
+          { label: 'Praktisch en herhaalbaar', scores: { Clearly: 5, 'Dayneeds': 4, 'Instant Hydration': 4, 'IM8': 3, 'Punch Power': 3, 'Haura': 3 } },
+        ]
+      }
+    ];
+
+    const scores = {};
+    brands.forEach(b => scores[b] = 0);
+    let currentQ = 0;
+    const answers = [];
+
+    const els = {
+      questions: document.getElementById('quiz-questions'),
+      result: document.getElementById('quiz-result'),
+      progress: document.getElementById('quiz-progress'),
+      current: document.getElementById('quiz-current'),
+      total: document.getElementById('quiz-total'),
+      title: document.getElementById('quiz-result-title'),
+      subtitle: document.getElementById('quiz-result-subtitle'),
+      card: document.getElementById('quiz-result-card'),
+      link: document.getElementById('quiz-result-link'),
+      altBody: document.getElementById('quiz-alt-body'),
+    };
+
+    els.total.textContent = questions.length;
+
+    function renderQuestion() {
+      if (currentQ >= questions.length) return showResult();
+      const q = questions[currentQ];
+      els.progress.style.width = ((currentQ) / questions.length * 100) + '%';
+      els.current.textContent = currentQ + 1;
+      els.questions.innerHTML = '<div class="quiz-question"><h3 class="quiz-q-text">' + q.q + '</h3><div class="quiz-options">' +
+        q.options.map((opt, i) => '<button type="button" class="quiz-option" data-idx="' + i + '">' + opt.label + '</button>').join('') +
+        '</div></div>';
+      els.questions.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.idx);
+          const opt = q.options[idx];
+          Object.keys(opt.scores).forEach(brand => { scores[brand] = (scores[brand] || 0) + opt.scores[brand]; });
+          answers.push({ q: currentQ, opt: idx });
+          currentQ++;
+          renderQuestion();
+        });
+      });
+    }
+
+    function showResult() {
+      els.progress.style.width = '100%';
+      const ranked = brands.slice().sort((a, b) => scores[b] - scores[a]);
+      const winner = ranked[0];
+      const backup = ranked[1];
+      const wp = D.products.find(p => p.brand === winner);
+      const bp = D.products.find(p => p.brand === backup);
+
+      els.title.textContent = wp.name;
+      els.subtitle.textContent = 'Op basis van je antwoorden is ' + wp.brand + ' de beste match uit onze top 6.';
+
+      els.card.innerHTML =
+        '<div class="quiz-card-inner">' +
+        '<img src="' + wp.image + '" alt="' + wp.name + '" class="quiz-card-img" />' +
+        '<div class="quiz-card-body">' +
+        '<div class="quiz-card-brand">' + wp.brand + '</div>' +
+        '<div class="quiz-card-name">' + wp.name + '</div>' +
+        '<div class="quiz-card-type">' + wp.productType + '</div>' +
+        '<div class="quiz-card-price"><span class="quiz-price-old">' + wp.originalPrice + '</span> <span class="quiz-price-new">' + wp.discountPrice + '</span> <span class="quiz-price-code">code ' + wp.promoCode + ' = -' + wp.promoPercent + '%</span></div>' +
+        '</div></div>';
+
+      els.link.href = wp.affiliateLink;
+      els.link.textContent = 'Bekijk ' + wp.brand + ' (code ' + wp.promoCode + ')';
+
+      els.altBody.innerHTML =
+        '<a href="' + bp.affiliateLink + '" target="_blank" rel="nofollow sponsored" class="quiz-alt-card">' +
+        '<img src="' + bp.image + '" alt="' + bp.name + '" class="quiz-alt-img" />' +
+        '<div class="quiz-alt-info">' +
+        '<div class="quiz-alt-brand">' + bp.brand + '</div>' +
+        '<div class="quiz-alt-name">' + bp.name + '</div>' +
+        '<div class="quiz-alt-price">' + bp.discountPrice + ' (code ' + bp.promoCode + ')</div>' +
+        '</div></a>';
+
+      els.questions.style.display = 'none';
+      els.result.style.display = 'block';
+    }
+
+    window.__resetQuiz = function() {
+      brands.forEach(b => scores[b] = 0);
+      currentQ = 0;
+      answers.length = 0;
+      els.questions.style.display = 'block';
+      els.result.style.display = 'none';
+      renderQuestion();
+    };
+
+    renderQuestion();
+  })();
+</script>
+
+<style>
+  .seo-guide { margin-top: 3rem; padding-top: 2rem; }
+  .seo-guide h2 { margin-bottom: 1rem; }
+  .seo-guide p { margin-bottom: 1rem; line-height: 1.7; color: #444; }
+  .faq-section { margin-top: 3rem; padding-top: 2rem; }
+
+  .quiz-wrap { margin: 2rem 0 2.5rem; padding: 2rem 1.75rem; background: #fffaf4; border: 1px solid #eee1d2; border-radius: 20px; }
+  .quiz-header { margin-bottom: 2rem; }
+  .quiz-progress-track { height: 8px; background: #eee1d2; border-radius: 999px; overflow: hidden; margin-bottom: .6rem; }
+  .quiz-progress-bar { height: 100%; background: #ef7a1a; border-radius: 999px; transition: width .3s ease; }
+  .quiz-progress-label { font-size: .82rem; color: #6f6f6f; font-weight: 600; }
+
+  .quiz-q-text { font-size: 1.4rem; font-weight: 700; color: #242424; margin: 0 0 1.3rem; line-height: 1.3; }
+  .quiz-options { display: flex; flex-direction: column; gap: .75rem; }
+  .quiz-option { padding: 1rem 1.25rem; background: #ffffff; border: 1px solid #eee1d2; border-radius: 12px; text-align: left; font-size: 1rem; color: #242424; cursor: pointer; transition: all .15s; font-family: inherit; }
+  .quiz-option:hover { border-color: #ef7a1a; background: #fff5eb; transform: translateY(-1px); }
+  .quiz-option:active { transform: translateY(0); }
+
+  .quiz-result-badge { display: inline-block; padding: .3rem .8rem; background: #ef7a1a; color: #fff; font-size: .78rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; border-radius: 999px; margin-bottom: .8rem; }
+  .quiz-result-title { font-size: 1.8rem; font-weight: 800; color: #242424; margin: 0 0 .5rem; }
+  .quiz-result-subtitle { color: #6f6f6f; margin: 0 0 1.5rem; font-size: 1rem; line-height: 1.55; }
+
+  .quiz-result-card { margin: 1.5rem 0; padding: 1.25rem; background: #ffffff; border: 1px solid #eee1d2; border-radius: 16px; }
+  .quiz-card-inner { display: grid; grid-template-columns: 100px 1fr; gap: 1.1rem; align-items: center; }
+  .quiz-card-img { width: 100%; height: auto; border-radius: 10px; }
+  .quiz-card-brand { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #ef7a1a; }
+  .quiz-card-name { font-size: 1.05rem; font-weight: 700; color: #242424; margin: .2rem 0 .3rem; line-height: 1.3; }
+  .quiz-card-type { font-size: .85rem; color: #6f6f6f; margin-bottom: .55rem; }
+  .quiz-card-price { display: flex; align-items: center; gap: .5rem; font-size: .95rem; flex-wrap: wrap; }
+  .quiz-price-old { color: #999; text-decoration: line-through; }
+  .quiz-price-new { color: #ef7a1a; font-weight: 800; font-size: 1.05rem; }
+  .quiz-price-code { background: #fff5eb; color: #ef7a1a; padding: .15rem .55rem; border-radius: 999px; font-size: .75rem; font-weight: 700; }
+
+  .quiz-result-cta { display: flex; gap: .75rem; margin: 1.5rem 0 1.75rem; flex-wrap: wrap; }
+  .quiz-cta-primary { display: inline-flex; align-items: center; padding: .85rem 1.5rem; background: #ef7a1a; color: #fff; font-weight: 700; text-decoration: none; border-radius: 999px; font-size: .95rem; border: none; cursor: pointer; }
+  .quiz-cta-primary:hover { opacity: 0.9; }
+  .quiz-cta-secondary { padding: .85rem 1.5rem; background: transparent; color: #242424; border: 1px solid #ddd; border-radius: 999px; font-size: .9rem; cursor: pointer; font-family: inherit; }
+  .quiz-cta-secondary:hover { background: #fff5eb; border-color: #ef7a1a; color: #ef7a1a; }
+
+  .quiz-alt { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee1d2; }
+  .quiz-alt-label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #6f6f6f; margin-bottom: .75rem; }
+  .quiz-alt-card { display: grid; grid-template-columns: 70px 1fr; gap: .85rem; align-items: center; padding: .85rem; background: #ffffff; border: 1px solid #eee1d2; border-radius: 12px; text-decoration: none; color: inherit; transition: border-color .15s; }
+  .quiz-alt-card:hover { border-color: #ef7a1a; }
+  .quiz-alt-img { width: 100%; height: auto; border-radius: 8px; }
+  .quiz-alt-brand { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: #ef7a1a; letter-spacing: .04em; }
+  .quiz-alt-name { font-size: .95rem; font-weight: 600; color: #242424; margin: .15rem 0; }
+  .quiz-alt-price { font-size: .82rem; color: #6f6f6f; }
+
+  @media (max-width: 640px) {
+    .quiz-wrap { padding: 1.25rem 1rem; }
+    .quiz-card-inner { grid-template-columns: 80px 1fr; gap: .8rem; }
+    .quiz-result-title { font-size: 1.4rem; }
+    .quiz-q-text { font-size: 1.15rem; }
+  }
+</style>

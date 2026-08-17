@@ -79,7 +79,7 @@ const detectLang = () => {
 const isContentPage = (item: Article) => {
   const href = item.href || item.slug || '';
   if (!href || href.startsWith('#') || !href.startsWith('/')) return false;
-  return !/(mentions|politique|privacy|legal|impressum|datenschutz|cookies|404|thank)/i.test(href);
+  return !/(mentions|politique|privacy|legal|impressum|datenschutz|juridisch|privacybeleid|cookies|404|thank)/i.test(href);
 };
 
 const normalizeHref = (item: Article) => item.href || item.slug || '/';
@@ -166,10 +166,10 @@ const textLinks = articles.slice(0, 3);
 
   .articles-container {
     width: 100%;
-    max-width: 92rem;
+    max-width: 72rem;
     margin: 0 auto;
-    padding-left: clamp(1rem, 4vw, 4rem);
-    padding-right: clamp(1rem, 4vw, 4rem);
+    padding-left: clamp(1.25rem, 4vw, 3rem);
+    padding-right: clamp(1.25rem, 4vw, 3rem);
   }
 
   .articles-header {
@@ -212,7 +212,7 @@ const textLinks = articles.slice(0, 3);
   }
 
   .articles-intro a:hover {
-    color: #d66a12;
+    color: #ef7a1a;
     border-bottom-color: currentColor;
   }
 
@@ -309,7 +309,7 @@ const textLinks = articles.slice(0, 3);
     transition: gap 0.2s ease, color 0.2s ease;
   }
 
-  .article-card:hover .article-read { gap: 0.875rem; color: #d66a12; }
+  .article-card:hover .article-read { gap: 0.875rem; color: #ef7a1a; }
 
   @media (max-width: 767px) {
     .articles-header { align-items: flex-start; gap: 0.875rem; }

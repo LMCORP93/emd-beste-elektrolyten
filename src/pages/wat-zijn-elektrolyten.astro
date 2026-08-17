@@ -1,0 +1,175 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogHero from '@/components/BlogHero.astro';
+import InBriefBlock from '@/components/InBriefBlock.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import ReviewPromoCard from '@/components/ReviewPromoCard.astro';
+import SidebarCTA from '@/components/SidebarCTA.astro';
+import FAQSection from '@/components/FAQSection.astro';
+import ContentImage from '@/components/ContentImage.astro';
+import InnerNote from '@/components/InnerNote.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import config from '@/data/site.config';
+import AuthorBioCard from '@/components/AuthorBioCard.astro';
+import ArticleGrid from '@/components/ArticleGrid.astro';
+
+const clearly = config.products.find((item) => item.brand === 'Clearly')!;
+const pageTitle = 'Wat zijn elektrolyten? Functie, voeding en wanneer je ze nodig hebt';
+const pageDescription = 'Elektrolyten zijn mineralen zoals natrium, kalium en magnesium die vocht en zenuwsignalen regelen. Hier lees je wat ze doen, waar ze in zitten en wanneer een supplement zinvol is.';
+
+const tocItems = [
+  { id: 'definitie', label: 'Wat zijn elektrolyten?' },
+  { id: 'functie', label: 'Wat doen ze in je lichaam?' },
+  { id: 'welke', label: 'De 4 belangrijkste' },
+  { id: 'voeding', label: 'Waar zitten ze in?' },
+  { id: 'tekort', label: 'Wanneer heb je een tekort?' },
+  { id: 'supplement', label: 'Wanneer een supplement?' },
+  { id: 'hoeveel', label: 'Hoeveel per dag?' },
+  { id: 'faq', label: 'FAQ' },
+];
+
+const faq = [
+  { question: 'Wat zijn elektrolyten precies?', answer: 'Elektrolyten zijn mineralen die in opgeloste vorm elektrische lading dragen. De belangrijkste zijn natrium, kalium, magnesium en calcium. Ze regelen je vochtbalans, zenuwsignalen en spiersamentrekkingen, waaronder die van je hart.' },
+  { question: 'Waar zijn elektrolyten goed voor?', answer: 'Ze houden je vochtbalans op peil, laten je zenuwen signalen doorgeven en helpen je spieren samentrekken en ontspannen. Zonder voldoende elektrolyten voel je je snel moe, krijg je hoofdpijn of spierkrampen.' },
+  { question: 'Waar zitten elektrolyten in eten?', answer: 'Natrium vind je in zout, bewerkt voedsel en olijven. Kalium in banaan, aardappel, spinazie en avocado. Magnesium in noten, zaden, volle granen en pure chocolade. Calcium in zuivel, sardines en groene bladgroenten.' },
+  { question: 'Heb je dagelijks een elektrolytensupplement nodig?', answer: 'Nee. Bij een gemengd, gevarieerd eetpatroon krijg je meestal voldoende binnen via voeding. Een supplement is vooral zinvol bij intensief zweten, warmte, low-carb of vasten, langdurige diarree of een medische reden.' },
+  { question: 'Hoe merk je een elektrolytentekort?', answer: 'De klassieke signalen zijn vermoeidheid, hoofdpijn, dorst, spierkrampen, duizeligheid bij snel opstaan en soms hartkloppingen. Aanhoudende of ernstige klachten horen altijd bij een arts, niet bij een online calculator.' },
+];
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'Article', headline:pageTitle, description:pageDescription, author:{'@type':'Person', name:config.author.name}, datePublished:'2026-08-09', mainEntityOfPage:new URL('/wat-zijn-elektrolyten/', config.domain).toString() })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'BreadcrumbList', itemListElement:[{'@type':'ListItem',position:1,name:'Beste Elektrolyten',item:config.domain},{'@type':'ListItem',position:2,name:'Wat zijn elektrolyten',item:new URL('/wat-zijn-elektrolyten/', config.domain).toString()}] })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'FAQPage', mainEntity: faq.map((item) => ({ '@type':'Question', name:item.question, acceptedAnswer:{ '@type':'Answer', text:item.answer } })) })} />
+  <BlogHero title="Wat zijn elektrolyten en waarom heb je ze nodig?" description="Elektrolyten zijn mineralen die je vochtbalans, spieren en zenuwen regelen. Deze gids legt kort uit wat ze doen, waar ze zitten en wanneer een supplement logisch is." author={config.author.name} authorAvatar={config.author.avatar} date="9 augustus 2026" readingTime="10 min. leestijd" breadcrumbs={[{ label: 'Wat zijn elektrolyten', href: '/wat-zijn-elektrolyten/' }]} bannerImage="/images/content/electrolytes-nl-buying-guide-inline.webp" product={{ name: clearly.name, image: clearly.image, promoCode: clearly.promoCode, promoPercent: clearly.promoPercent, originalPrice: clearly.originalPrice, discountPrice: clearly.discountPrice, affiliateLink: clearly.affiliateLink }} heroButton={{ text: "Verder lezen", href: "#intro" }} showOfferBlock={false} />
+  <main style="background-color:#ffffff;">
+    <div class="container-large padding-global">
+      <div class="padding-section-medium">
+        <div class="blog-grid">
+          <div class="content-column">
+            <InBriefBlock title="Elektrolyten in het kort" paragraphs={['Elektrolyten zijn mineralen (vooral natrium, kalium, magnesium en calcium) die opgelost in vocht elektrische signalen doorgeven. Ze houden je vochtbalans op peil, laten je zenuwen werken en regelen je spiersamentrekkingen, waaronder je hartslag.', 'Bij een gemengd eetpatroon krijg je normaal genoeg binnen via voeding. Een supplement wordt logisch bij intensief sporten, hitte, low-carb, vasten of veel vochtverlies. Wij bevelen Clearly aan als praktische Nederlandse keuze voor die situaties.']} assets={['Regelen vochtbalans en zenuwsignalen', 'Voorkomen krampen, dorst en hoofdpijn bij vochtverlies', 'Grotendeels op te vangen via voeding', 'Aanvulling zinvol bij zweten, warmte, keto of vasten']} considerations={['Meer is niet altijd beter, zeker bij natrium', 'Bij nierproblemen of medicatie eerst medisch advies']} product={clearly} ctaLabel="Bekijk Clearly" />
+
+            <section id="intro" class="support-intro rich-text">
+              <p>De zoekopdracht <strong>wat zijn elektrolyten</strong> is een van de meest gestelde vragen rond hydratatie en supplementen. Het antwoord is minder mysterieus dan het klinkt: elektrolyten zijn gewoon mineralen. Maar ze doen wel meer dan je zou vermoeden.</p>
+              <p>Deze gids legt kort uit wat elektrolyten zijn, waarom je lichaam ze nodig heeft, waar ze in voeding zitten en wanneer een supplement logisch is. Aan het einde weet je precies wanneer een poeder zoals Clearly zinvol wordt en wanneer je gewoon goed kunt eten.</p>
+            </section>
+
+            <TableOfContents items={tocItems} />
+
+            <section id="definitie" class="rich-text seo-guide">
+              <h2>Wat zijn elektrolyten precies?</h2>
+              <p>Elektrolyten zijn mineralen die, opgelost in water, een elektrische lading dragen. Positief geladen (natrium, kalium, magnesium, calcium) of negatief geladen (chloride, bicarbonaat, fosfaat). Die lading is precies wat ze bruikbaar maakt: je lichaam gebruikt ze om signalen door te geven tussen cellen.</p>
+              <p>De term komt uit de scheikunde. In je lichaam vind je elektrolyten in bloed, zweet, tranen, urine en de vloeistoffen rond je cellen. Zonder een correcte balans functioneren zenuwen, spieren, hart en nieren niet goed.</p>
+              <p>Wat elektrolyten <em>niet</em> zijn: energiebronnen. Ze leveren geen calorieën, geen suiker en geen eiwit. Een elektrolytendrank is dus geen sportdrank in de klassieke zin; het is een hydratatiehulp met mineralen.</p>
+            </section>
+
+            <section id="functie" class="rich-text seo-guide">
+              <h2>Wat doen elektrolyten in je lichaam?</h2>
+              <p>Drie kernfuncties:</p>
+              <ul>
+                <li><strong>Vochtbalans regelen:</strong> natrium en kalium bepalen samen hoeveel water je cellen vasthouden of loslaten. Te weinig natrium = te weinig vocht vasthouden = dorst en duizeligheid.</li>
+                <li><strong>Zenuwsignalen doorgeven:</strong> elke keer dat je een spier aanspant, stuurt je zenuwstelsel een elektrisch signaal. Natrium, kalium en calcium zijn hierbij onmisbaar.</li>
+                <li><strong>Spieren en hart laten werken:</strong> zonder magnesium en kalium kunnen je spieren niet goed samentrekken en ontspannen. Krampen en hartritmestoornissen zijn beide klassieke signalen van een verstoorde balans.</li>
+              </ul>
+              <p>Dat verklaart waarom je bij vochtverlies (zweten, alcohol, diarree, vasten in de hitte) meer merkt dan alleen dorst: het hele mineralenevenwicht raakt uit balans.</p>
+            </section>
+
+            <section id="welke" class="rich-text seo-guide">
+              <h2>De vier belangrijkste elektrolyten</h2>
+              <h3>1. Natrium (Na)</h3>
+              <p>De grootste rol bij vochtbalans. Je verliest natrium vooral via zweet en urine. Bij warmte, sport, alcohol of low-carb loopt dat verlies snel op. Dagelijkse referentie: 1 500-2 300 mg (WHO).</p>
+              <h3>2. Kalium (K)</h3>
+              <p>Werkt in tegenspraak met natrium en is belangrijk voor je hart en spieren. Zit vooral in fruit en groente. Dagelijkse referentie: ongeveer 3 000-3 500 mg (EFSA).</p>
+              <h3>3. Magnesium (Mg)</h3>
+              <p>Betrokken bij honderden enzymatische reacties. Speelt een rol bij spierontspanning, slaap en zenuwsignalen. Dagelijkse referentie: 310-420 mg (EFSA).</p>
+              <h3>4. Calcium (Ca)</h3>
+              <p>Bekend van botten, maar ook nodig voor spiersamentrekking en zenuwsignalen. Dagelijkse referentie: 950-1 000 mg (EFSA).</p>
+            </section>
+
+            <ComparisonTable title="Kernrol per elektrolyt" headers={[{label:'Elektrolyt'}, {label:'Kernrol'}, {label:'Belangrijkste bronnen'}]} rows={[
+              { cells:['Natrium (Na)','Vochtbalans, bloeddruk','Zout, olijven, bewerkte voeding'], highlight:true },
+              { cells:['Kalium (K)','Hart, spieren, tegenwicht Na','Banaan, aardappel, spinazie, avocado'] },
+              { cells:['Magnesium (Mg)','Spierontspanning, slaap, enzymreacties','Noten, zaden, volle granen, pure chocolade'] },
+              { cells:['Calcium (Ca)','Botten, spieren, zenuwen','Zuivel, sardines, groene bladgroenten'] }
+            ]}/>
+
+            <section id="voeding" class="rich-text seo-guide">
+              <h2>Waar zitten elektrolyten in eten?</h2>
+              <p>De meeste gezonde volwassenen halen hun elektrolyten uit gewone voeding. Ter oriëntatie:</p>
+              <ul>
+                <li><strong>Natrium:</strong> zout (585 mg per gram zout), olijven, kaas, brood, bouillon.</li>
+                <li><strong>Kalium:</strong> banaan (~420 mg per stuk), gekookte aardappel (~700 mg per portie), spinazie, avocado, zoete aardappel, bonen.</li>
+                <li><strong>Magnesium:</strong> pompoenpitten, amandelen, cashewnoten, havermout, pure chocolade (70%+), spinazie.</li>
+                <li><strong>Calcium:</strong> yoghurt, kwark, kaas, sardines met graten, boerenkool, verrijkte plantaardige drank.</li>
+              </ul>
+              <p>Wie voldoende variatie eet, komt zelden structureel tekort. Wie vast, keto eet of vaak intensief sport in de warmte, kan wel dagelijks meer nodig hebben dan een gemiddelde eetdag levert. Precies daar past een gericht supplement.</p>
+            </section>
+
+            <ContentImage src="/images/content/electrolytes-nl-buying-guide-inline.webp" alt="Elektrolyten in voeding en drank" caption="Elektrolyten haal je vooral uit voeding. Een supplement is een aanvulling, geen vervanging." />
+
+            <section id="tekort" class="rich-text seo-guide">
+              <h2>Wanneer heb je een tekort?</h2>
+              <p>Klassieke situaties waarin een lichte verstoring vaak voorkomt:</p>
+              <ul>
+                <li><strong>Intensief zweten:</strong> sport, warmte, sauna of fysiek werk in de zon.</li>
+                <li><strong>Alcohol:</strong> vaker plassen betekent extra natriumverlies (zie ook onze pagina over <a href="/elektrolyten-kater/">elektrolyten en kater</a>).</li>
+                <li><strong>Vasten en low-carb:</strong> je nieren scheiden meer natrium uit bij lage insuline.</li>
+                <li><strong>Diarree of braken:</strong> flink verlies in korte tijd, ORS is dan vaak nuttiger dan een sportdrank.</li>
+                <li><strong>Medicatie:</strong> plaspillen en sommige bloeddrukmedicatie beïnvloeden het evenwicht.</li>
+              </ul>
+              <InnerNote emoji="⚠️" text="Aanhoudende klachten (hartkloppingen, spierzwakte, verwardheid, ernstige duizeligheid) horen bij een arts, niet bij een supplement. Elektrolyten zijn hulpmiddel, geen diagnose." />
+            </section>
+
+            <section id="supplement" class="rich-text seo-guide">
+              <h2>Wanneer is een supplement zinvol?</h2>
+              <p>Een supplement is een aanvulling, niet een vervanging van goed eten. Het wordt logisch in vijf situaties:</p>
+              <ul>
+                <li>Regelmatig sport van meer dan 60 minuten, zeker in de warmte.</li>
+                <li>Low-carb, keto of intermittent fasting als vast eetpatroon.</li>
+                <li>Fysiek werk of hobby in warme omgevingen (bouw, sauna, wandelen in de zomer).</li>
+                <li>Reizen naar warme klimaten of hittegolven thuis.</li>
+                <li>Herstel van een korte diarree-episode (in ernstige gevallen: ORS of arts).</li>
+              </ul>
+              <p>Voor de meeste van deze scenarios adviseren we Clearly. Suikervrij poeder, duidelijke mineralenlogica en 60 porties per pot. Wil je precies weten hoeveel je persoonlijk nodig hebt, gebruik dan onze <a href="/elektrolyten-calculator/">elektrolyten calculator</a>.</p>
+            </section>
+
+            <div class="template-promo-block"><ReviewPromoCard product={clearly} /></div>
+
+            <section id="hoeveel" class="rich-text seo-guide">
+              <h2>Hoeveel elektrolyten per dag?</h2>
+              <p>Referentiewaarden voor gezonde volwassenen (bron: WHO en EFSA):</p>
+              <ul>
+                <li><strong>Natrium:</strong> minimum 1 500 mg, maximum ~2 300 mg (5-6 g zout) op een gemiddelde dag.</li>
+                <li><strong>Kalium:</strong> ~3 000-3 500 mg per dag.</li>
+                <li><strong>Magnesium:</strong> 310 mg (vrouwen) tot 420 mg (mannen).</li>
+                <li><strong>Calcium:</strong> ~950-1 000 mg per dag.</li>
+              </ul>
+              <p>Bij intensief sporten, hitte, keto of vasten kan de natriumbehoefte oplopen tot 3 000-4 000 mg. Onze <a href="/elektrolyten-calculator/">calculator</a> maakt dat concreet voor jouw situatie.</p>
+              <p>Wat je niet moet doen: dagelijks veel extra natrium innemen zonder reden. Dat kan bij mensen met hoge bloeddruk of nierproblemen juist schadelijk zijn. Meer is niet automatisch beter.</p>
+            </section>
+
+            <section id="faq" class="faq-section"><FAQSection faq={faq} title="Veelgestelde vragen" /></section>
+
+            <AuthorBioCard />
+          </div>
+          <aside class="sidebar-column">
+            <div class="sidebar-sticky">
+              <SidebarCTA logoSrc={clearly.brandLogo} productName={clearly.name} brandName={clearly.brand} promoCode={clearly.promoCode} promoPercent={clearly.promoPercent} originalPrice={clearly.originalPrice} discountPrice={clearly.discountPrice} ctaLink={clearly.affiliateLink} heroImage={clearly.image} rating={clearly.rating} reviewCount={clearly.reviewCount} />
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+  <ArticleGrid />
+</BaseLayout>
+
+<style>
+  .support-intro { margin-bottom: 2rem; }
+  .seo-guide { margin-top: 3rem; padding-top: 2rem; }
+  .seo-guide h2 { margin-bottom: 1rem; }
+  .seo-guide h3 { margin-top: 1.6rem; margin-bottom: .65rem; font-size: 1.22rem; font-weight: 700; color: #242424; }
+  .seo-guide p, .support-intro p { margin-bottom: 1rem; line-height: 1.7; color: #444; }
+  .seo-guide ul { margin: 1rem 0 1.5rem 1.25rem; color: #444; line-height: 1.7; }
+  .seo-guide li { margin-bottom: .65rem; }
+  .faq-section { margin-top: 3rem; padding-top: 2rem; }
+</style>

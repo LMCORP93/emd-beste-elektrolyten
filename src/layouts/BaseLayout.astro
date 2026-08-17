@@ -141,8 +141,8 @@ const footerLinks = [
       siteName={config.siteName}
       logoSrc="/logo.svg"
       navLinks={navLinks}
-      ctaText="Bekijken"
-      ctaLink={headerCtaLink}
+      ctaText="Vergelijken"
+      ctaLink="/"
     />
 
     <slot />
@@ -161,12 +161,13 @@ const footerLinks = [
       rating={config.products[0].rating}
     />
 
-    <CookieNotice lang="nl" privacyHref="/datenschutz/" />
+    <CookieNotice lang="nl" privacyHref="/privacybeleid/" />
 
     <Footer
       siteName={config.siteName}
       logoSrc="/logo.svg"
       navLinks={footerLinks}
+      tagline={config.tagline}
       copyright="Alle rechten voorbehouden"
     />
   </body>
