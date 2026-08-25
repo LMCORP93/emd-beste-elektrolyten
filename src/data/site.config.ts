@@ -32,7 +32,7 @@ const products: Product[] = [
     originalPrice: '30.00€',
     discountPrice: '25.50€',
     affiliateLink: 'https://taap.it/clearly-electrolytes',
-    origin: '🇳🇱 Nederland',
+    origin: 'Nederland',
     availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Elektrolyten poeder zonder suiker',
     pros: [
@@ -62,7 +62,7 @@ const products: Product[] = [
     originalPrice: '$112.00',
     discountPrice: '$100.80',
     affiliateLink: 'https://im8health.com/products/essentials-pro?snowball=LMC&selling_plan=2948432039',
-    origin: '🇺🇸 Verenigde Staten',
+    origin: 'Verenigde Staten',
     availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Premium all-in-one drink zonder suiker',
     pros: [
@@ -92,7 +92,7 @@ const products: Product[] = [
     originalPrice: '33.17€',
     discountPrice: '29.85€',
     affiliateLink: 'https://taap.it/instant-hydration',
-    origin: '🇺🇸 Verenigde Staten',
+    origin: 'Verenigde Staten',
     availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Elektrolyten sticks zonder suiker',
     pros: [
@@ -122,7 +122,7 @@ const products: Product[] = [
     originalPrice: '$39.00',
     discountPrice: '$33.15',
     affiliateLink: 'https://collabs.shop/fa4rmo',
-    origin: '🇨🇭 Zwitserland',
+    origin: 'Zwitserland',
     availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Suikervrije mineralen- en vitaminendrank',
     pros: [
@@ -152,7 +152,7 @@ const products: Product[] = [
     originalPrice: '8.90€',
     discountPrice: '6.68€',
     affiliateLink: 'https://fnty.co/c/r-zPRSqZPp',
-    origin: '🇫🇷 Frankrijk',
+    origin: 'Frankrijk',
     availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Bruistabletten met elektrolyten',
     pros: [
@@ -182,7 +182,7 @@ const products: Product[] = [
     originalPrice: '29.95€',
     discountPrice: '26.95€',
     affiliateLink: 'https://dayneeds.com',
-    origin: '🇪🇺 Europa',
+    origin: 'Europa',
     availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Elektrolyten poeder voor sport en dagelijks gebruik',
     pros: [
