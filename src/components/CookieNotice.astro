@@ -63,17 +63,15 @@ const notice = copy[normalizedLang as keyof typeof copy] ?? copy.fr;
   hidden
 >
   <p class="cookie-notice__text">{notice.text}</p>
-  <div class="cookie-notice__actions">
-    <a class="cookie-notice__link" href={privacyHref}>{notice.link}</a>
-    <div class="cookie-notice__buttons">
-      <button class="cookie-notice__refuse" type="button" id="cookie-notice-refuse">
-        {notice.refuse}
-      </button>
-      <button class="cookie-notice__button" type="button" id="cookie-notice-accept">
-        {notice.accept}
-      </button>
-    </div>
+  <div class="cookie-notice__buttons">
+    <button class="cookie-notice__refuse" type="button" id="cookie-notice-refuse">
+      {notice.refuse}
+    </button>
+    <button class="cookie-notice__button" type="button" id="cookie-notice-accept">
+      {notice.accept}
+    </button>
   </div>
+  <a class="cookie-notice__link" href={privacyHref}>{notice.link}</a>
 </section>
 
 <script>
@@ -146,40 +144,35 @@ const notice = copy[normalizedLang as keyof typeof copy] ?? copy.fr;
     line-height: 1.45;
   }
 
-  .cookie-notice__actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-  }
-
   .cookie-notice__link {
+    display: inline-block;
+    margin-top: 0.6rem;
     color: #5f5045;
-    font-size: 0.8125rem;
-    font-weight: 700;
+    font-size: 0.75rem;
+    font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 0.18em;
   }
 
   .cookie-notice__buttons {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: 0.5rem;
-    flex-wrap: wrap;
   }
 
   .cookie-notice__refuse {
-    flex: 0 0 auto;
+    flex: 1 1 0;
     border: 1px solid rgba(36, 36, 36, 0.25);
-    border-radius: 999px;
+    border-radius: 0.5rem;
     background: transparent;
     color: #5f5045;
     cursor: pointer;
     font-family: 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 0.8125rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    line-height: 1;
-    padding: 0.66rem 0.85rem;
+    line-height: 1.2;
+    padding: 0.6rem 0.5rem;
+    text-align: center;
   }
 
   .cookie-notice__refuse:hover {
@@ -187,17 +180,18 @@ const notice = copy[normalizedLang as keyof typeof copy] ?? copy.fr;
   }
 
   .cookie-notice__button {
-    flex: 0 0 auto;
+    flex: 1 1 0;
     border: 0;
-    border-radius: 999px;
+    border-radius: 0.5rem;
     background: #ef7a1a;
     color: #fff;
     cursor: pointer;
     font-family: 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 0.8125rem;
+    font-size: 0.78rem;
     font-weight: 800;
-    line-height: 1;
-    padding: 0.72rem 0.95rem;
+    line-height: 1.2;
+    padding: 0.6rem 0.5rem;
+    text-align: center;
     box-shadow: 0 1px 3px rgba(36, 24, 12, 0.12);
   }
 
@@ -226,8 +220,5 @@ const notice = copy[normalizedLang as keyof typeof copy] ?? copy.fr;
       margin-bottom: 0.65rem;
     }
 
-    .cookie-notice__actions {
-      align-items: stretch;
-    }
   }
 </style>
