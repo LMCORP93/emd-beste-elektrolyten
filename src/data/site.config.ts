@@ -61,7 +61,7 @@ const products: Product[] = [
     promoPercent: 10,
     originalPrice: '$112.00',
     discountPrice: '$100.80',
-    affiliateLink: 'https://taap.it/im8health',
+    affiliateLink: 'https://im8health.com/products/essentials-pro?snowball=LMC&selling_plan=2948432039',
     origin: '🇺🇸 Verenigde Staten',
     availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Premium all-in-one drink zonder suiker',
