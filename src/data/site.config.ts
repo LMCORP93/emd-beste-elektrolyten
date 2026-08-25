@@ -61,7 +61,7 @@ const products: Product[] = [
     promoPercent: 10,
     originalPrice: '$112.00',
     discountPrice: '$100.80',
-    affiliateLink: 'https://taap.it/im8health',
+    affiliateLink: 'https://im8health.com/products/essentials-pro?snowball=LMC&selling_plan=2948432039',
     origin: 'Verenigde Staten',
     availability: 'Levering naar Nederland mogelijk; controleer de voorwaarden bij de officiële winkel',
     productType: 'Premium all-in-one drink zonder suiker',
@@ -239,10 +239,10 @@ const config: SiteConfig = {
   products,
   tocItems: [{ id: 'introduction', label: 'Korte conclusie' }, { id: 'ranking', label: 'Ranking' }, { id: 'methodiek', label: 'Methodiek' }, { id: 'keuzehulp', label: 'Keuzehulp' }, { id: 'situaties', label: 'Gebruik' }, { id: 'verdict', label: 'Eindoordeel' }, { id: 'faq', label: 'FAQ' }],
   pages: [
-    { type: 'comparatif', label: 'Top elektrolyten', slug: '/', image: '/images/content/electrolytes-nl-home-hero.webp' },
-    { type: 'blog', label: 'Elektrolyten zonder suiker', slug: '/elektrolyten-zonder-suiker/', image: '/images/content/electrolytes-nl-sugar-free-hero.webp' },
-    { type: 'blog', label: 'Elektrolyten bij vasten', slug: '/elektrolyten-vasten/', image: '/images/content/electrolytes-nl-fasting-hero.webp' },
-    { type: 'blog', label: 'Poeder of tabletten', slug: '/elektrolyten-poeder-of-tabletten/', image: '/images/content/electrolytes-nl-powder-tablets-hero.webp' },
+    { type: 'comparatif', label: 'Vergelijking', slug: '/', image: '/images/content/electrolytes-nl-home-hero.webp' },
+    { type: 'blog', label: 'Zonder suiker', slug: '/elektrolyten-zonder-suiker/', image: '/images/content/electrolytes-nl-sugar-free-hero.webp' },
+    { type: 'blog', label: 'Elektrolyten tijdens vasten', slug: '/elektrolyten-vasten/', image: '/images/content/electrolytes-nl-fasting-hero.webp' },
+    { type: 'blog', label: 'Poeder/tabletten', slug: '/elektrolyten-poeder-of-tabletten/', image: '/images/content/electrolytes-nl-powder-tablets-hero.webp' },
   ],
 };
 
