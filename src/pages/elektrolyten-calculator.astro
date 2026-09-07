@@ -1,0 +1,319 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogHero from '@/components/BlogHero.astro';
+import SidebarCTA from '@/components/SidebarCTA.astro';
+import FAQSection from '@/components/FAQSection.astro';
+import config from '@/data/site.config';
+import AuthorBioCard from '@/components/AuthorBioCard.astro';
+import ArticleGrid from '@/components/ArticleGrid.astro';
+
+const clearly = config.products.find((item) => item.brand === 'Clearly')!;
+const pageTitle = 'Elektrolyten calculator: hoeveel heb je per dag nodig?';
+const pageDescription = 'Bereken direct je dagelijkse behoefte aan natrium, kalium en magnesium op basis van gewicht, sport, weer, dieet en zweetniveau. Persoonlijke aanbeveling in enkele seconden.';
+
+const faq = [
+  { question: 'Hoe werkt de elektrolyten calculator?', answer: 'De calculator vertrekt van gemiddelde dagelijkse behoeftes (WHO en EFSA referenties voor gezonde volwassenen) en past die aan op basis van je gewicht, sportminuten, weer, dieet en zweetniveau. De uitkomst is een praktische schatting, geen medisch advies.' },
+  { question: 'Waarom is natrium meestal het belangrijkste?', answer: 'Natrium verlies je het snelst via zweet, en het is het mineraal dat bij warmte, sport, low-carb of vasten het eerst tekortkomt. Kalium en magnesium zijn nuttig, maar minder acuut bij vochtverlies.' },
+  { question: 'Klopt de aanbeveling voor iedereen?', answer: 'Nee. De calculator is een educatieve indicatie voor gezonde volwassenen. Bij nierproblemen, hoge bloeddruk, hartproblemen, zwangerschap of medicatie moet je altijd medisch advies vragen voor je meer natrium of kalium neemt.' },
+  { question: 'Hoeveel porties Clearly heb ik dan nodig?', answer: 'De calculator toont hoeveel procent van je berekende natriumbehoefte je met één portie Clearly binnenkrijgt. Voor de meeste normale dagen volstaat één portie, bij intensieve sport of hitte kan een tweede portie logisch zijn.' },
+  { question: 'Waarom staat suiker niet in de calculator?', answer: 'Suiker is geen elektrolyt maar een energiebron. Bij korte tot middellange inspanning heb je meestal geen extra suiker nodig, dus een suikervrij poeder zoals Clearly past bij bijna alle scenarios die de calculator dekt.' },
+];
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'WebApplication', name:'Elektrolyten calculator', description:pageDescription, url:new URL('/elektrolyten-calculator/', config.domain).toString(), applicationCategory:'HealthApplication', operatingSystem:'Any', offers:{'@type':'Offer', price:0, priceCurrency:'EUR'} })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'BreadcrumbList', itemListElement:[{'@type':'ListItem',position:1,name:'Beste Elektrolyten',item:config.domain},{'@type':'ListItem',position:2,name:'Elektrolyten calculator',item:new URL('/elektrolyten-calculator/', config.domain).toString()}] })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'FAQPage', mainEntity: faq.map((item) => ({ '@type':'Question', name:item.question, acceptedAnswer:{ '@type':'Answer', text:item.answer } })) })} />
+  <BlogHero
+    title="Elektrolyten calculator: hoeveel per dag?"
+    description="Bereken in 30 seconden je persoonlijke dagelijkse behoefte aan natrium, kalium en magnesium op basis van je gewicht, sport, weer, dieet en zweetniveau."
+    author={config.author.name}
+    authorAvatar={config.author.avatar}
+    date="9 augustus 2026"
+    readingTime="4 min. + calculator"
+    breadcrumbs={[{ label: 'Calculator', href: '/elektrolyten-calculator/' }]}
+    bannerImage="/images/content/electrolytes-nl-home-hero.webp"
+    product={{ name: clearly.name, image: clearly.image, promoCode: clearly.promoCode, promoPercent: clearly.promoPercent, originalPrice: clearly.originalPrice, discountPrice: clearly.discountPrice, affiliateLink: clearly.affiliateLink }}
+    heroButton={{ text: 'Start de calculator', href: '#intro' }}
+    showOfferBlock={false}
+  />
+
+  <main style="background-color:#ffffff;">
+    <div class="container-large padding-global">
+      <div class="padding-section-medium">
+        <div class="blog-grid">
+          <div class="content-column">
+
+            <section class="support-intro rich-text">
+              <p>Deze <strong>elektrolyten calculator</strong> vertaalt jouw persoonlijke situatie (gewicht, sportintensiteit, weer, dieet en zweetniveau) naar een concrete dagelijkse behoefte aan natrium, kalium en magnesium in mg. Daarnaast tonen we hoeveel procent van die behoefte je met één portie Clearly binnenkrijgt.</p>
+              <p>De cijfers zijn een praktische schatting op basis van publieke referentiewaarden (WHO en EFSA voor gezonde volwassenen). Ze zijn geen medisch advies. Bij nierproblemen, hoge bloeddruk, hartproblemen of medicatie is medisch overleg altijd belangrijker dan een online calculator.</p>
+            </section>
+
+            <section id="intro" class="calc-wrap">
+              <div class="calc-header">
+                <h2>Bereken je behoefte</h2>
+                <p class="calc-sub">Sleep de vier regelaars en kies je situatie. De uitkomst verandert live.</p>
+              </div>
+
+              <div class="calc-grid">
+                <div class="calc-input">
+                  <div class="calc-label-row">
+                    <label for="calc-weight">Gewicht</label>
+                    <span class="calc-value"><span id="calc-weight-out">70</span> kg</span>
+                  </div>
+                  <input id="calc-weight" type="range" min="40" max="130" value="70" step="1" />
+                </div>
+
+                <div class="calc-input">
+                  <div class="calc-label-row">
+                    <label for="calc-sport">Sport per dag</label>
+                    <span class="calc-value"><span id="calc-sport-out">30</span> min</span>
+                  </div>
+                  <input id="calc-sport" type="range" min="0" max="180" value="30" step="5" />
+                </div>
+
+                <div class="calc-input">
+                  <label for="calc-weer">Weer / temperatuur</label>
+                  <select id="calc-weer">
+                    <option value="1.0">Koel (onder 15°C)</option>
+                    <option value="1.1" selected>Mild (15-22°C)</option>
+                    <option value="1.3">Warm (22-28°C)</option>
+                    <option value="1.6">Heet (boven 28°C)</option>
+                  </select>
+                </div>
+
+                <div class="calc-input">
+                  <label for="calc-dieet">Dieet</label>
+                  <select id="calc-dieet">
+                    <option value="1.0" selected>Normaal / gemengd</option>
+                    <option value="1.3">Low-carb</option>
+                    <option value="1.4">Keto</option>
+                    <option value="1.35">Intermittent fasting / vasten</option>
+                  </select>
+                </div>
+
+                <div class="calc-input">
+                  <label for="calc-zweet">Zweetniveau</label>
+                  <select id="calc-zweet">
+                    <option value="0.9">Laag (weinig zweten)</option>
+                    <option value="1.0" selected>Normaal</option>
+                    <option value="1.3">Hoog (regelmatig nat)</option>
+                    <option value="1.6">Heel hoog (zoutplekken op kleding)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="calc-results" id="calc-results">
+                <div class="calc-result-header">Jouw dagelijkse behoefte</div>
+                <div class="calc-result-grid">
+                  <div class="calc-mineral">
+                    <div class="calc-mineral-icon">Na</div>
+                    <div class="calc-mineral-name">Natrium</div>
+                    <div class="calc-mineral-value"><span id="out-na">2400</span> mg</div>
+                    <div class="calc-mineral-cover"><span id="cov-na">85</span>% dekking met 1 portie Clearly</div>
+                  </div>
+                  <div class="calc-mineral">
+                    <div class="calc-mineral-icon">K</div>
+                    <div class="calc-mineral-name">Kalium</div>
+                    <div class="calc-mineral-value"><span id="out-k">3100</span> mg</div>
+                    <div class="calc-mineral-cover"><span id="cov-k">10</span>% dekking met 1 portie Clearly</div>
+                  </div>
+                  <div class="calc-mineral">
+                    <div class="calc-mineral-icon">Mg</div>
+                    <div class="calc-mineral-name">Magnesium</div>
+                    <div class="calc-mineral-value"><span id="out-mg">360</span> mg</div>
+                    <div class="calc-mineral-cover"><span id="cov-mg">28</span>% dekking met 1 portie Clearly</div>
+                  </div>
+                </div>
+
+                <div class="calc-recommendation" id="calc-reco">
+                  <div class="calc-reco-title">Onze aanbeveling</div>
+                  <div class="calc-reco-body" id="calc-reco-body">
+                    Op basis van jouw situatie is één portie Clearly meestal voldoende voor je natrium. Verdeel eventueel over de dag en vul aan met kaliumrijke voeding (banaan, spinazie, avocado).
+                  </div>
+                  <a href={clearly.affiliateLink} target="_blank" rel="nofollow sponsored" class="calc-cta">
+                    Bekijk Clearly (code {clearly.promoCode} = -{clearly.promoPercent}%)
+                  </a>
+                </div>
+              </div>
+
+              <p class="calc-disclaimer">Educatieve schatting op basis van publieke referentiewaarden. Vervangt geen medisch advies. Raadpleeg een arts bij nierproblemen, hoge bloeddruk, hartklachten, zwangerschap of medicatie.</p>
+            </section>
+
+            <section id="hoe-werkt-het" class="rich-text seo-guide">
+              <h2>Hoe werkt de elektrolyten calculator?</h2>
+              <p>De calculator vertrekt van drie basisbehoeftes voor een gezonde volwassene:</p>
+              <ul>
+                <li><strong>Natrium:</strong> 1 500 mg per dag als vertrekpunt (WHO ondergrens).</li>
+                <li><strong>Kalium:</strong> ongeveer 3 000 mg per dag (EFSA adequate intake).</li>
+                <li><strong>Magnesium:</strong> ongeveer 350 mg per dag.</li>
+              </ul>
+              <p>Vervolgens passen we die getallen aan op basis van jouw invoer. Sport verhoogt vooral de natriumbehoefte, omdat je natrium verliest via zweet. Warm weer versterkt dat effect. Keto, vasten en low-carb doen je nieren extra natrium uitscheiden, dus je behoefte gaat omhoog. Zweetniveau werkt als extra multiplier: sommige mensen zweten letterlijk twee keer meer dan anderen bij dezelfde inspanning.</p>
+              <p>Gewicht speelt ook mee: een sporter van 90 kg heeft doorgaans iets meer nodig dan iemand van 55 kg, maar niet lineair. We gebruiken een demper zodat de aanbeveling realistisch blijft.</p>
+            </section>
+
+            <section id="waarom-clearly" class="rich-text seo-guide">
+              <h2>Waarom Clearly als aanbeveling?</h2>
+              <p>Clearly staat op nummer 1 in onze algemene <a href="/">vergelijking van elektrolyten</a> omdat het voor Nederlandse kopers de meest directe combinatie biedt: suikervrij poeder, duidelijke mineralenlogica en 60 porties per pot. Voor de meeste situaties die de calculator dekt (sport, warmte, vasten, dagelijks gebruik) is één portie genoeg om je natriumbehoefte grotendeels te dekken.</p>
+              <p>Voor kalium en magnesium vult Clearly bewust minder aan. Dat is geen zwakte: die twee mineralen krijg je vaak beter binnen via voeding (banaan, spinazie, noten, avocado, pure chocolade). Een supplement dat álles probeert op te lossen wordt meestal duurder zonder dat de dagelijkse resultaten beter zijn.</p>
+              <p>Wil je een breder alternatief met extra micronutriënten, dan is IM8 een premium optie. Zoek je iets voor onderweg, dan zijn de sticks van Instant Hydration handiger. Alle drie staan in onze <a href="/">vergelijking</a>.</p>
+            </section>
+
+            <section id="wanneer-tweede-portie" class="rich-text seo-guide">
+              <h2>Wanneer heb je een tweede portie nodig?</h2>
+              <p>De calculator toont dit automatisch, maar drie situaties komen vaak terug:</p>
+              <ul>
+                <li><strong>Lange training in de hitte:</strong> een portie voor, een portie tijdens of na. Zeker als je zoutplekken op je shirt ziet.</li>
+                <li><strong>Volledige vastendag zonder eten:</strong> spreid twee porties over de dag, één rond de ochtend, één in de late middag.</li>
+                <li><strong>Wielrentochten of hardlopen boven 90 min:</strong> combineer met water en eventueel een banaan voor kalium.</li>
+              </ul>
+              <p>Voor een gewone werkdag zonder sport is één portie of zelfs alleen goede voeding meestal voldoende. Meer is niet altijd beter, zeker bij natrium.</p>
+            </section>
+
+            <section id="faq" class="faq-section"><FAQSection faq={faq} title="Veelgestelde vragen" /></section>
+
+            <AuthorBioCard />
+          </div>
+
+          <aside class="sidebar-column">
+            <div class="sidebar-sticky">
+              <SidebarCTA logoSrc={clearly.brandLogo} productName={clearly.name} brandName={clearly.brand} promoCode={clearly.promoCode} promoPercent={clearly.promoPercent} originalPrice={clearly.originalPrice} discountPrice={clearly.discountPrice} ctaLink={clearly.affiliateLink} heroImage={clearly.image} rating={clearly.rating} reviewCount={clearly.reviewCount} />
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+  <ArticleGrid />
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    const CLEARLY_NA = 800;
+    const CLEARLY_K = 300;
+    const CLEARLY_MG = 100;
+
+    const els = {
+      weight: document.getElementById('calc-weight'),
+      sport: document.getElementById('calc-sport'),
+      weer: document.getElementById('calc-weer'),
+      dieet: document.getElementById('calc-dieet'),
+      zweet: document.getElementById('calc-zweet'),
+      wOut: document.getElementById('calc-weight-out'),
+      sOut: document.getElementById('calc-sport-out'),
+      na: document.getElementById('out-na'),
+      k: document.getElementById('out-k'),
+      mg: document.getElementById('out-mg'),
+      covNa: document.getElementById('cov-na'),
+      covK: document.getElementById('cov-k'),
+      covMg: document.getElementById('cov-mg'),
+      reco: document.getElementById('calc-reco-body'),
+    };
+
+    if (!els.weight) return;
+
+    function compute() {
+      const w = parseFloat(els.weight.value);
+      const s = parseFloat(els.sport.value);
+      const weer = parseFloat(els.weer.value);
+      const dieet = parseFloat(els.dieet.value);
+      const zweet = parseFloat(els.zweet.value);
+
+      const sportHours = s / 60;
+      const weightFactor = Math.sqrt(w / 70);
+
+      const baseNa = 1500;
+      const baseK = 3000;
+      const baseMg = 350;
+
+      const sportNa = sportHours * 800;
+      const sportK = sportHours * 200;
+      const sportMg = sportHours * 30;
+
+      const na = Math.round(((baseNa + sportNa) * weer * dieet * zweet * weightFactor) / 50) * 50;
+      const k = Math.round(((baseK + sportK) * dieet * weightFactor) / 50) * 50;
+      const mg = Math.round(((baseMg + sportMg) * weightFactor) / 10) * 10;
+
+      els.wOut.textContent = w;
+      els.sOut.textContent = s;
+      els.na.textContent = na.toLocaleString('nl-NL');
+      els.k.textContent = k.toLocaleString('nl-NL');
+      els.mg.textContent = mg.toLocaleString('nl-NL');
+
+      const covNa = Math.min(100, Math.round((CLEARLY_NA / na) * 100));
+      const covK = Math.min(100, Math.round((CLEARLY_K / k) * 100));
+      const covMg = Math.min(100, Math.round((CLEARLY_MG / mg) * 100));
+
+      els.covNa.textContent = covNa;
+      els.covK.textContent = covK;
+      els.covMg.textContent = covMg;
+
+      let reco = '';
+      const servings = Math.max(1, Math.ceil(na / CLEARLY_NA / 1.2));
+
+      if (na >= 3500 || (sportHours >= 1.5 && weer >= 1.3)) {
+        reco = `Op basis van jouw combinatie sport + hitte adviseren we ${servings} porties Clearly, verdeeld over de dag. Neem één portie voor of tijdens de inspanning en één portie in de herstelfase. Combineer met kaliumrijke voeding (banaan, spinazie, avocado) en voldoende water.`;
+      } else if (dieet >= 1.3) {
+        reco = `Bij low-carb, keto of vasten scheiden de nieren extra natrium uit. Voor jouw dag is ${servings} portie(s) Clearly logisch, bij voorkeur \'s ochtends en eventueel een tweede in de late middag. Kalium en magnesium vul je aan via voeding.`;
+      } else if (sportHours >= 1) {
+        reco = `Voor jouw sportvolume dekt één portie Clearly rond de training het grootste deel van je natriumbehoefte. Neem hem 30-60 minuten voor of direct na de inspanning en drink daarnaast voldoende water.`;
+      } else {
+        reco = `Voor een normale dag zonder intensieve sport is één portie Clearly meestal voldoende voor je natrium. Voor kalium en magnesium blijft voeding (banaan, spinazie, noten, pure chocolade) de belangrijkste bron.`;
+      }
+      els.reco.textContent = reco;
+    }
+
+    ['weight','sport','weer','dieet','zweet'].forEach(k => {
+      els[k].addEventListener('input', compute);
+      els[k].addEventListener('change', compute);
+    });
+    compute();
+  })();
+</script>
+
+<style>
+  .support-intro { margin-bottom: 2rem; }
+  .support-intro p { margin-bottom: 1rem; line-height: 1.7; color: #444; }
+  .seo-guide { margin-top: 3rem; padding-top: 2rem; }
+  .seo-guide h2 { margin-bottom: 1rem; }
+  .seo-guide h3 { margin-top: 1.6rem; margin-bottom: .65rem; font-size: 1.22rem; font-weight: 700; color: #242424; }
+  .seo-guide p, .seo-guide ul { margin-bottom: 1rem; line-height: 1.7; color: #444; }
+  .seo-guide ul { margin: 1rem 0 1.5rem 1.25rem; }
+  .seo-guide li { margin-bottom: .65rem; }
+  .faq-section { margin-top: 3rem; padding-top: 2rem; }
+
+  .calc-wrap { margin: 2.5rem 0; padding: 1.75rem 1.5rem; background: #fffaf4; border: 1px solid #eee1d2; border-radius: 20px; }
+  .calc-header h2 { margin: 0 0 .3rem; font-size: 1.55rem; color: #242424; }
+  .calc-sub { margin: 0 0 1.5rem; color: #6f6f6f; font-size: .95rem; }
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1.25rem; margin-bottom: 1.75rem; }
+  .calc-input { display: flex; flex-direction: column; gap: .5rem; }
+  .calc-input label { font-weight: 600; font-size: .92rem; color: #333; }
+  .calc-label-row { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+  .calc-value { font-weight: 700; color: #ef7a1a; font-size: .95rem; }
+  .calc-input input[type="range"] { width: 100%; accent-color: #ef7a1a; }
+  .calc-input select { padding: .55rem .7rem; border: 1px solid #ddd; border-radius: 10px; background: #fff; font-size: .95rem; color: #242424; cursor: pointer; }
+  .calc-input select:focus { outline: 2px solid #ef7a1a; outline-offset: 1px; }
+
+  .calc-results { margin-top: 1.5rem; padding: 1.4rem; background: #ffffff; border: 1px solid #eee1d2; border-radius: 16px; }
+  .calc-result-header { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #ef7a1a; margin-bottom: .9rem; }
+  .calc-result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; margin-bottom: 1.4rem; }
+  .calc-mineral { padding: 1rem .85rem; background: #f8f4ec; border-radius: 12px; text-align: center; }
+  .calc-mineral-icon { display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; margin: 0 auto .55rem; border-radius: 999px; background: #ef7a1a; color: #fff; font-weight: 800; font-size: 1.05rem; }
+  .calc-mineral-name { font-size: .82rem; color: #6f6f6f; margin-bottom: .3rem; }
+  .calc-mineral-value { font-size: 1.5rem; font-weight: 800; color: #242424; margin-bottom: .35rem; }
+  .calc-mineral-cover { font-size: .78rem; color: #6f6f6f; line-height: 1.35; }
+  .calc-mineral-cover span { color: #ef7a1a; font-weight: 700; }
+
+  .calc-recommendation { padding: 1.25rem; background: #fffaf4; border: 1px solid #eee1d2; border-radius: 14px; }
+  .calc-reco-title { font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #ef7a1a; margin-bottom: .55rem; }
+  .calc-reco-body { color: #3b342d; line-height: 1.65; margin-bottom: 1rem; font-size: .98rem; }
+  .calc-cta { display: inline-flex; align-items: center; padding: .8rem 1.4rem; background: #ef7a1a; color: #fff; font-weight: 700; text-decoration: none; border-radius: 999px; font-size: .95rem; transition: background .15s; }
+  .calc-cta:hover { background: #ef7a1a; opacity: 0.9; }
+
+  .calc-disclaimer { margin-top: 1rem; padding: .75rem 1rem; background: #f4f2ec; border-radius: 10px; font-size: .82rem; color: #6f6f6f; line-height: 1.5; }
+
+  @media (max-width: 640px) {
+    .calc-grid { grid-template-columns: 1fr; }
+    .calc-result-grid { grid-template-columns: 1fr; }
+    .calc-wrap { padding: 1.25rem 1rem; }
+  }
+</style>

@@ -1,0 +1,228 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogHero from '@/components/BlogHero.astro';
+import SidebarCTA from '@/components/SidebarCTA.astro';
+import FAQSection from '@/components/FAQSection.astro';
+import config from '@/data/site.config';
+import AuthorBioCard from '@/components/AuthorBioCard.astro';
+import ArticleGrid from '@/components/ArticleGrid.astro';
+
+const clearly = config.products.find((item) => item.brand === 'Clearly')!;
+const pageTitle = 'Elektrolyten prijs per portie: vergelijk de 6 merken in 2026';
+const pageDescription = 'Vergelijk de werkelijke prijs per portie van Clearly, IM8, Instant Hydration en de andere top-6 elektrolyten. Kortingscodes inbegrepen. Sorteer op prijs, dekking of merk.';
+
+const faq = [
+  { question: 'Wat is prijs per portie en waarom telt het?', answer: 'De prijs per portie is wat je écht betaalt per gebruik, niet wat op de verpakking staat. Een pot van 30 euro met 60 porties is bijvoorbeeld goedkoper per gebruik dan een pot van 25 euro met 30 porties. Dit maakt een eerlijkere vergelijking dan alleen naar de verkoopprijs kijken.' },
+  { question: 'Bevatten alle prijzen de kortingscodes?', answer: 'Ja, standaard tonen we de prijs met kortingscode zichtbaar. Je kunt de codes ook uitzetten om de brutoprijs te vergelijken. Codes zijn geverifieerd op moment van publicatie en kunnen wijzigen.' },
+  { question: 'Waarom staat Clearly niet als goedkoopste?', answer: 'Prijs is één van meerdere criteria. Clearly wint in onze algemene top 6 op combinatie van prijs, formule, merkfit en gebruiksflexibiliteit. Voor pure budget-optie is Punch Power vaak lager per portie, maar met een minder complete formule.' },
+  { question: 'Hoe verifieer ik de prijzen zelf?', answer: 'Klik op elk merk om naar de officiële verkooppagina te gaan. Prijzen wijzigen af en toe door aanbiedingen; onze tabel is een startpunt voor vergelijking, niet een real-time feed.' },
+];
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'WebApplication', name:'Elektrolyten prijs per portie', description:pageDescription, url:new URL('/prijs-per-portie/', config.domain).toString(), applicationCategory:'FinanceApplication', operatingSystem:'Any', offers:{'@type':'Offer', price:0, priceCurrency:'EUR'} })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'BreadcrumbList', itemListElement:[{'@type':'ListItem',position:1,name:'Beste Elektrolyten',item:config.domain},{'@type':'ListItem',position:2,name:'Prijs per portie',item:new URL('/prijs-per-portie/', config.domain).toString()}] })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'FAQPage', mainEntity: faq.map((item) => ({ '@type':'Question', name:item.question, acceptedAnswer:{ '@type':'Answer', text:item.answer } })) })} />
+  <BlogHero
+    title="Elektrolyten prijs per portie vergelijker"
+    description="Zie in één oogopslag welk elektrolytenmerk de laagste prijs per portie heeft, met en zonder kortingscode. Sorteer live op prijs, portie of merk."
+    author={config.author.name}
+    authorAvatar={config.author.avatar}
+    date="9 augustus 2026"
+    readingTime="3 min. + tabel"
+    breadcrumbs={[{ label: 'Prijs per portie', href: '/prijs-per-portie/' }]}
+    bannerImage="/images/content/electrolytes-nl-home-hero.webp"
+    product={{ name: clearly.name, image: clearly.image, promoCode: clearly.promoCode, promoPercent: clearly.promoPercent, originalPrice: clearly.originalPrice, discountPrice: clearly.discountPrice, affiliateLink: clearly.affiliateLink }}
+    heroButton={{ text: 'Bekijk de tabel', href: '#intro' }}
+    showOfferBlock={false}
+  />
+
+  <main style="background-color:#ffffff;">
+    <div class="container-large padding-global">
+      <div class="padding-section-medium">
+        <div class="blog-grid">
+          <div class="content-column">
+
+            <section id="intro" class="pp-wrap">
+              <div class="pp-header">
+                <h2>Vergelijker prijs per portie</h2>
+                <p class="pp-sub">Klik op een kolom om te sorteren. Zet de kortingscodes aan of uit voor een eerlijke vergelijking.</p>
+              </div>
+
+              <div class="pp-controls">
+                <label class="pp-toggle">
+                  <input type="checkbox" id="pp-codes" checked />
+                  <span>Kortingscodes toepassen</span>
+                </label>
+              </div>
+
+              <div class="pp-table-wrap">
+                <table class="pp-table" id="pp-table">
+                  <thead>
+                    <tr>
+                      <th data-sort="brand" class="pp-th">Merk</th>
+                      <th data-sort="price" class="pp-th pp-right">Prijs</th>
+                      <th data-sort="portions" class="pp-th pp-right">Porties</th>
+                      <th data-sort="pricePerPortion" class="pp-th pp-right pp-highlight">€/portie</th>
+                      <th class="pp-th pp-right">Kopen</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pp-tbody"></tbody>
+                </table>
+              </div>
+
+              <p class="pp-disclaimer">Prijzen en kortingscodes op basis van publieke informatie op moment van publicatie. Aantal porties per pot is een indicatie (verpakkingen kunnen wijzigen). Klik altijd door naar de verkooppagina voor de actuele prijs.</p>
+            </section>
+
+            <section id="waarom-prijs-portie" class="rich-text seo-guide">
+              <h2>Waarom prijs per portie tellen?</h2>
+              <p>De verkoopprijs op een pot elektrolyten is misleidend. Een pot van 30 euro met 60 porties kost €0,50 per gebruik. Een pot van 25 euro met 30 porties kost €0,83 per gebruik, dus 66% duurder in werkelijkheid. Wie regelmatig elektrolyten gebruikt, betaalt zichzelf snel terug door op prijs per portie te letten in plaats van op de sticker.</p>
+              <p>Sticks en losse porties zijn bijna altijd duurder per portie dan poeder. Dat is de premie voor gemak: geen scoop, geen pot, exact afgemeten. Voor dagelijks gebruik thuis is poeder meestal 30-60% goedkoper.</p>
+            </section>
+
+            <section id="beste-prijs-kwaliteit" class="rich-text seo-guide">
+              <h2>Beste prijs-kwaliteit verhouding</h2>
+              <p>Op basis van deze tabel én de bredere criteria in <a href="/">onze vergelijking</a> is Clearly de beste prijs-kwaliteit optie voor de Nederlandse markt: lage prijs per portie, sterke natrium-dosering, suikervrij en 60 porties per pot. Voor puur budget en incidenteel gebruik kan Punch Power interessant zijn, en voor premium micronutriënten IM8.</p>
+              <p>Wil je zien hoeveel porties je persoonlijk nodig hebt op basis van je sport, dieet en weer, gebruik dan onze <a href="/elektrolyten-calculator/">elektrolyten calculator</a>. Of doe de <a href="/elektrolyten-quiz/">quiz</a> om te ontdekken welk merk het beste bij jouw doel past.</p>
+            </section>
+
+            <section id="beste-koop-tips" class="rich-text seo-guide">
+              <h2>Vier tips om nooit teveel te betalen</h2>
+              <ul>
+                <li><strong>Reken altijd terug naar prijs per portie</strong>, niet naar prijs per verpakking.</li>
+                <li><strong>Check of het merk grotere formaten aanbiedt.</strong> Een pot van 90 porties is vaak 15-25% goedkoper per portie dan een pot van 30.</li>
+                <li><strong>Combineer een abonnement met een eenmalige aankoop.</strong> Sommige merken geven 10-15% extra korting op abonnementen, wat de portieprijs verlaagt zonder dat je vast zit aan grote hoeveelheden.</li>
+                <li><strong>Vergelijk sticks alleen met andere sticks.</strong> Poeder vs stick is een gemaks-versus-prijs discussie, niet een puur prijsvergelijk.</li>
+              </ul>
+            </section>
+
+            <section id="faq" class="faq-section"><FAQSection faq={faq} title="Veelgestelde vragen" /></section>
+
+            <AuthorBioCard />
+          </div>
+
+          <aside class="sidebar-column">
+            <div class="sidebar-sticky">
+              <SidebarCTA logoSrc={clearly.brandLogo} productName={clearly.name} brandName={clearly.brand} promoCode={clearly.promoCode} promoPercent={clearly.promoPercent} originalPrice={clearly.originalPrice} discountPrice={clearly.discountPrice} ctaLink={clearly.affiliateLink} heroImage={clearly.image} rating={clearly.rating} reviewCount={clearly.reviewCount} />
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+  <ArticleGrid />
+</BaseLayout>
+
+<script is:inline set:html={`
+window.__ppData = ${JSON.stringify(config.products.map(p => {
+  const parseP = (s) => parseFloat(String(s).replace(',', '.').replace(/[^\d.]/g, '')) || 0;
+  return {
+    brand: p.brand, name: p.name, image: p.image,
+    originalPriceNum: parseP(p.originalPrice),
+    discountPriceNum: parseP(p.discountPrice),
+    promoCode: p.promoCode, promoPercent: p.promoPercent,
+    affiliateLink: p.affiliateLink,
+    portions: p.brand === 'Clearly' ? 60 : (p.brand === 'IM8' ? 30 : (p.brand === 'Instant Hydration' ? 30 : (p.brand === 'Haura' ? 30 : (p.brand === 'Punch Power' ? 40 : 45))))
+  };
+}))};
+`} />
+
+<script is:inline>
+  (function() {
+    const D = window.__ppData;
+    const tbody = document.getElementById('pp-ppody') || document.getElementById('pp-tbody');
+    const codesToggle = document.getElementById('pp-codes');
+    const ths = document.querySelectorAll('.pp-th[data-sort]');
+    let sortKey = 'pricePerPortion';
+    let sortAsc = true;
+    let useCodes = true;
+
+    if (!tbody || !codesToggle) return;
+
+    function fmt(n) { return '€ ' + n.toFixed(2).replace('.', ','); }
+
+    function render() {
+      const rows = D.map(p => {
+        const price = useCodes ? p.discountPriceNum : p.originalPriceNum;
+        const ppp = price / p.portions;
+        return { ...p, price, pricePerPortion: ppp };
+      }).sort((a, b) => {
+        const av = a[sortKey], bv = b[sortKey];
+        if (typeof av === 'string') return sortAsc ? av.localeCompare(bv) : bv.localeCompare(av);
+        return sortAsc ? av - bv : bv - av;
+      });
+
+      const lowest = Math.min(...rows.map(r => r.pricePerPortion));
+
+      tbody.innerHTML = rows.map(r => {
+        const isLowest = Math.abs(r.pricePerPortion - lowest) < 0.001;
+        return '<tr' + (isLowest ? ' class="pp-best"' : '') + '>' +
+          '<td class="pp-brand"><img src="' + r.image + '" alt="' + r.brand + '" class="pp-img" />' +
+          '<div><div class="pp-brand-name">' + r.brand + (isLowest ? ' <span class="pp-tag">Laagste €/portie</span>' : '') + '</div><div class="pp-brand-sub">' + r.name + '</div></div></td>' +
+          '<td class="pp-right">' + fmt(r.price) + (useCodes && r.promoPercent ? '<div class="pp-code">code ' + r.promoCode + '</div>' : '') + '</td>' +
+          '<td class="pp-right">' + r.portions + '</td>' +
+          '<td class="pp-right pp-highlight">' + fmt(r.pricePerPortion) + '</td>' +
+          '<td class="pp-right"><a href="' + r.affiliateLink + '" target="_blank" rel="nofollow sponsored" class="pp-buy">Bekijk</a></td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    ths.forEach(th => th.addEventListener('click', () => {
+      const key = th.dataset.sort;
+      if (sortKey === key) sortAsc = !sortAsc;
+      else { sortKey = key; sortAsc = true; }
+      ths.forEach(t => t.classList.remove('pp-th-asc', 'pp-th-desc'));
+      th.classList.add(sortAsc ? 'pp-th-asc' : 'pp-th-desc');
+      render();
+    }));
+
+    codesToggle.addEventListener('change', () => { useCodes = codesToggle.checked; render(); });
+    render();
+  })();
+</script>
+
+<style>
+  .seo-guide { margin-top: 3rem; padding-top: 2rem; }
+  .seo-guide h2 { margin-bottom: 1rem; }
+  .seo-guide p, .seo-guide ul { margin-bottom: 1rem; line-height: 1.7; color: #444; }
+  .seo-guide ul { margin: 1rem 0 1.5rem 1.25rem; }
+  .seo-guide li { margin-bottom: .65rem; }
+  .faq-section { margin-top: 3rem; padding-top: 2rem; }
+
+  .pp-wrap { margin: 2rem 0 2.5rem; padding: 1.75rem 1.5rem; background: #fffaf4; border: 1px solid #eee1d2; border-radius: 20px; }
+  .pp-header h2 { margin: 0 0 .3rem; font-size: 1.55rem; color: #242424; }
+  .pp-sub { margin: 0 0 1.5rem; color: #6f6f6f; font-size: .95rem; }
+  .pp-controls { margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .pp-toggle { display: inline-flex; align-items: center; gap: .5rem; font-size: .9rem; color: #333; cursor: pointer; padding: .5rem .8rem; background: #ffffff; border: 1px solid #eee1d2; border-radius: 999px; }
+  .pp-toggle input { accent-color: #ef7a1a; }
+
+  .pp-table-wrap { background: #ffffff; border: 1px solid #eee1d2; border-radius: 16px; overflow-x: auto; }
+  .pp-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+  .pp-th { padding: .9rem .75rem; background: #f8f4ec; font-weight: 700; font-size: .82rem; color: #6f6f6f; text-transform: uppercase; letter-spacing: .04em; text-align: left; cursor: pointer; user-select: none; border-bottom: 1px solid #eee1d2; }
+  .pp-th:hover { color: #ef7a1a; }
+  .pp-th.pp-right { text-align: right; }
+  .pp-th.pp-highlight { color: #ef7a1a; }
+  .pp-th-asc::after { content: ' ↑'; opacity: 0.6; }
+  .pp-th-desc::after { content: ' ↓'; opacity: 0.6; }
+
+  .pp-table td { padding: .9rem .75rem; border-bottom: 1px solid #f4f2ec; vertical-align: middle; font-size: .95rem; }
+  .pp-table tr:last-child td { border-bottom: none; }
+  .pp-table tr.pp-best { background: #fff5eb; }
+
+  .pp-brand { display: flex; align-items: center; gap: .75rem; }
+  .pp-img { width: 42px; height: 42px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+  .pp-brand-name { font-weight: 700; color: #242424; font-size: .95rem; }
+  .pp-brand-sub { font-size: .78rem; color: #6f6f6f; margin-top: .1rem; }
+  .pp-tag { display: inline-block; padding: .1rem .5rem; background: #ef7a1a; color: #fff; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; border-radius: 999px; margin-left: .3rem; vertical-align: middle; }
+
+  .pp-right { text-align: right; }
+  .pp-highlight { color: #ef7a1a; font-weight: 800; }
+  .pp-code { font-size: .7rem; color: #6f6f6f; margin-top: .15rem; }
+  .pp-buy { display: inline-block; padding: .5rem .9rem; background: #ef7a1a; color: #fff; text-decoration: none; font-size: .82rem; font-weight: 700; border-radius: 999px; transition: opacity .15s; }
+  .pp-buy:hover { opacity: 0.9; }
+
+  .pp-disclaimer { margin-top: 1rem; padding: .75rem 1rem; background: #f4f2ec; border-radius: 10px; font-size: .82rem; color: #6f6f6f; line-height: 1.5; }
+
+  @media (max-width: 640px) {
+    .pp-wrap { padding: 1.25rem 1rem; }
+  }
+</style>

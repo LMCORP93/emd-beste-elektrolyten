@@ -56,12 +56,12 @@ const ctaIsInternal = ctaLink.startsWith('#') || ctaLink.startsWith('/');
 
 <header id="navbar" class="sticky top-0 z-[999] w-full border-b border-black/5 bg-grey-bg/95 py-3 backdrop-blur transition-shadow duration-300">
   <div class="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-6 px-6 max-[767px]:px-5">
-    <a href="/" class="flex shrink-0 items-center" aria-label={`Retour à l'accueil - ${siteName}`}>
+    <a href="/" class="flex shrink-0 items-center" aria-label={`Terug naar home - ${siteName}`}>
       <img src={logoSrc} alt={siteName} class="h-10 w-auto max-[420px]:h-9" />
     </a>
 
     <div class="flex min-w-0 flex-1 items-center justify-end gap-5 max-[991px]:hidden">
-      <nav class="flex min-w-0 items-center justify-end gap-1 rounded-full bg-white/45 px-2 py-1 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)]" aria-label="Navigation principale">
+      <nav class="flex min-w-0 items-center justify-end gap-1 rounded-full bg-white/45 px-2 py-1 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)]" aria-label="Hoofdnavigatie">
         <a
           href={primaryLink.href}
           aria-current={isNavLinkActive(primaryLink.href) ? 'page' : undefined}
@@ -127,7 +127,7 @@ const ctaIsInternal = ctaLink.startsWith('#') || ctaLink.startsWith('/');
         href={ctaLink}
         rel={ctaIsInternal ? undefined : 'nofollow sponsored'}
         target={ctaIsInternal ? undefined : '_blank'}
-        class="inline-flex shrink-0 items-center gap-2 rounded-button bg-orange px-6 py-3 font-primary text-sm font-bold leading-none text-white no-underline transition-all duration-200 hover:-translate-y-px hover:bg-[#d66a12]"
+        class="inline-flex shrink-0 items-center gap-2 rounded-button bg-orange px-6 py-3 font-primary text-sm font-bold leading-none text-white no-underline transition-all duration-200 hover:-translate-y-px hover:bg-[#ef7a1a]"
       >
         <span>{ctaText}</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
@@ -137,7 +137,7 @@ const ctaIsInternal = ctaLink.startsWith('#') || ctaLink.startsWith('/');
       </a>
     </div>
 
-    <button id="mobile-menu-btn" class="hidden flex-col items-center justify-center gap-1.5 rounded-full bg-white/70 p-3 max-[991px]:flex" aria-label="Ouvrir le menu" aria-expanded="false">
+    <button id="mobile-menu-btn" class="hidden flex-col items-center justify-center gap-1.5 rounded-full bg-white/70 p-3 max-[991px]:flex" aria-label="Menu openen" aria-expanded="false">
       <span class="hamburger-bar block h-[2px] w-6 origin-center bg-black transition-all duration-300"></span>
       <span class="hamburger-bar block h-[2px] w-6 bg-black transition-all duration-300"></span>
       <span class="hamburger-bar block h-[2px] w-6 origin-center bg-black transition-all duration-300"></span>
@@ -148,7 +148,7 @@ const ctaIsInternal = ctaLink.startsWith('#') || ctaLink.startsWith('/');
 <div id="mobile-menu" class="mobile-overlay fixed inset-0 z-[9999] flex flex-col bg-grey-bg transition-all duration-300">
   <div class="flex items-center justify-between px-5 py-4">
     <img src={logoSrc} alt={siteName} class="h-9 w-auto" />
-    <button id="mobile-menu-close" class="flex h-11 w-11 items-center justify-center rounded-full bg-white" aria-label="Fermer le menu">
+    <button id="mobile-menu-close" class="flex h-11 w-11 items-center justify-center rounded-full bg-white" aria-label="Menu sluiten">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 6 6 18" />
         <path d="m6 6 12 12" />
@@ -156,7 +156,7 @@ const ctaIsInternal = ctaLink.startsWith('#') || ctaLink.startsWith('/');
     </button>
   </div>
 
-  <nav class="flex flex-1 flex-col gap-7 overflow-y-auto px-6 pb-8 pt-4" aria-label="Navigation mobile">
+  <nav class="flex flex-1 flex-col gap-7 overflow-y-auto px-6 pb-8 pt-4" aria-label="Mobiele navigatie">
     <a
       href={primaryLink.href}
       aria-current={isNavLinkActive(primaryLink.href) ? 'page' : undefined}
@@ -208,7 +208,7 @@ const ctaIsInternal = ctaLink.startsWith('#') || ctaLink.startsWith('/');
       href={ctaLink}
       rel={ctaIsInternal ? undefined : 'nofollow sponsored'}
       target={ctaIsInternal ? undefined : '_blank'}
-      class="mt-auto inline-flex items-center justify-center gap-2.5 rounded-button bg-orange px-8 py-4 font-primary text-lg font-bold leading-none text-white no-underline transition-all duration-200 hover:bg-[#d66a12]"
+      class="mt-auto inline-flex items-center justify-center gap-2.5 rounded-button bg-orange px-8 py-4 font-primary text-lg font-bold leading-none text-white no-underline transition-all duration-200 hover:bg-[#ef7a1a]"
     >
       <span>{ctaText}</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">

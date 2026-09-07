@@ -5,6 +5,7 @@ export interface Product {
   availability: string; productType: string; productCategory?: string; shipping?: string; originFlag?: string; pros: string[]; cons: string[]; description: string;
 }
 export interface SiteConfig {
+  language?: string;
   domain: string; isIndexable?: boolean; siteName: string; brand: string; product: string;
   productCategory: string; productFormat: string; tagline: string; affiliateLink: string;
   promoCode: string; originalPrice: string; discountPrice: string; rating: number;
@@ -23,7 +24,7 @@ const products: Product[] = [
     name: 'Electrolytes',
     brand: 'Clearly',
     slug: 'clearly-electrolytes',
-    image: '/images/products/clearly-electrolytes.webp',
+    image: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/68dfb594d12ef2866803e9e1_Clearly.avif',
     brandLogo: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/68dfaffbcd9575da42dea912_67604f816f6f25a217f35605_Clearly_-_Dark_Blue_150x.avif',
     rating: 8.8,
     reviewCount: 1,
@@ -113,7 +114,7 @@ const products: Product[] = [
     name: 'Biomimetic All-in-One Multivitamin',
     brand: 'Haura',
     slug: 'haura',
-    image: '/images/electrolytes/haura-product.webp',
+    image: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/6977d11881420e0c7fc6364d_687e8c5142862086f51a4428_haura.webp',
     brandLogo: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/6977d0fa520868e58a29bb0d_t%C3%A9l%C3%A9charger__1__1-removebg-preview%201.svg',
     rating: 7.9,
     reviewCount: 100,
@@ -143,7 +144,7 @@ const products: Product[] = [
     name: 'ElectroBoost',
     brand: 'Punch Power',
     slug: 'punch-power-electroboost',
-    image: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/698617a9b49409a4d54b861e_1_-_electroboost_citron_1.webp',
+    image: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/698c5a64f16a1e15fb72711e_Frame%2064.webp',
     brandLogo: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/698c4fc5d9578425bda69d73_punchpower-logo-e1693550769341.png',
     rating: 7.5,
     reviewCount: 700,
@@ -173,7 +174,7 @@ const products: Product[] = [
     name: 'Electrolytes',
     brand: 'Dayneeds',
     slug: 'dayneeds-electrolytes',
-    image: '/images/electrolytes/dayneeds-product.webp',
+    image: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/698e5808ea45537262a0ff81_Frame%2073.webp',
     brandLogo: 'https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/698e54a13b99cb99781ae979_logo-green.svg',
     rating: 7.3,
     reviewCount: 120,
@@ -202,6 +203,7 @@ const products: Product[] = [
 
 const config: SiteConfig = {
   domain: 'https://beste-elektrolyten.nl',
+  language: 'nl',
   isIndexable: true,
   siteName: 'Beste Elektrolyten',
   brand: 'Clearly',
@@ -243,6 +245,12 @@ const config: SiteConfig = {
     { type: 'blog', label: 'Zonder suiker', slug: '/elektrolyten-zonder-suiker/', image: '/images/content/electrolytes-nl-sugar-free-hero.webp' },
     { type: 'blog', label: 'Elektrolyten tijdens vasten', slug: '/elektrolyten-vasten/', image: '/images/content/electrolytes-nl-fasting-hero.webp' },
     { type: 'blog', label: 'Poeder/tabletten', slug: '/elektrolyten-poeder-of-tabletten/', image: '/images/content/electrolytes-nl-powder-tablets-hero.webp' },
+    { type: 'blog', label: 'Calculator', slug: '/elektrolyten-calculator/', image: '/images/content/electrolytes-nl-home-hero.webp' },
+    { type: 'blog', label: 'Elektrolyten kater', slug: '/elektrolyten-kater/', image: '/images/content/electrolytes-nl-home-hero.webp' },
+    { type: 'blog', label: 'Wat zijn elektrolyten', slug: '/wat-zijn-elektrolyten/', image: '/images/content/electrolytes-nl-buying-guide-inline.webp' },
+    { type: 'blog', label: 'Quiz', slug: '/elektrolyten-quiz/', image: '/images/content/electrolytes-nl-home-hero.webp' },
+    { type: 'blog', label: 'Zweetverlies simulator', slug: '/zweetverlies-simulator/', image: '/images/content/electrolytes-nl-home-hero.webp' },
+    { type: 'blog', label: 'Prijs per portie', slug: '/prijs-per-portie/', image: '/images/content/electrolytes-nl-home-hero.webp' },
   ],
 };
 

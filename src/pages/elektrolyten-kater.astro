@@ -1,0 +1,145 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogHero from '@/components/BlogHero.astro';
+import InBriefBlock from '@/components/InBriefBlock.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import ReviewPromoCard from '@/components/ReviewPromoCard.astro';
+import SidebarCTA from '@/components/SidebarCTA.astro';
+import FAQSection from '@/components/FAQSection.astro';
+import ContentImage from '@/components/ContentImage.astro';
+import InnerNote from '@/components/InnerNote.astro';
+import config from '@/data/site.config';
+import AuthorBioCard from '@/components/AuthorBioCard.astro';
+import ArticleGrid from '@/components/ArticleGrid.astro';
+
+const clearly = config.products.find((item) => item.brand === 'Clearly')!;
+const pageTitle = 'Elektrolyten tegen kater: welke werken echt in 2026?';
+const pageDescription = 'Kater bestrijden met elektrolyten: welke mineralen echt tellen, wanneer je ze best neemt en welke poeder in Nederland de meest logische keuze is.';
+
+const tocItems = [
+  { id: 'kort', label: 'Kort antwoord' },
+  { id: 'waarom', label: 'Waarom kater ontstaat' },
+  { id: 'werken', label: 'Werken elektrolyten?' },
+  { id: 'wanneer', label: 'Wanneer nemen?' },
+  { id: 'kiezen', label: 'Welke kiezen?' },
+  { id: 'clearly', label: 'Onze keuze: Clearly' },
+  { id: 'vs', label: 'Elektrolyten vs paracetamol' },
+  { id: 'faq', label: 'FAQ' },
+];
+
+const faq = [
+  { question: 'Helpen elektrolyten echt tegen een kater?', answer: 'Elektrolyten lossen de kater niet direct op, maar ze pakken wel één van de belangrijkste oorzaken aan: uitdroging en verlies van natrium door frequenter toiletbezoek na alcohol. Voor veel mensen voelt het herstel daardoor sneller en vlotter aan.' },
+  { question: 'Wanneer neem je elektrolyten het beste tegen een kater?', answer: 'Idealiter drink je één portie voor het slapengaan (met een groot glas water) en één de volgende ochtend. Beide momenten helpen tegen uitdroging, waarbij de avondportie vaak het meeste verschil maakt.' },
+  { question: 'Zijn suikervrije elektrolyten beter tegen een kater?', answer: 'Meestal wel. Een sportdrank met suiker geeft een korte energieboost maar kan misselijkheid versterken. Een suikervrij poeder zoals Clearly levert dezelfde mineralen zonder de suikerpiek en past bij een gevoelige maag.' },
+  { question: 'Kun je elektrolyten combineren met paracetamol tegen een kater?', answer: 'Ja, dit zijn twee verschillende dingen. Paracetamol werkt op hoofdpijn, elektrolyten op hydratatie en mineralenbalans. Neem paracetamol niet vaker dan aanbevolen en drink het altijd met veel water.' },
+  { question: 'Welk mineraal telt het meest bij een kater?', answer: 'Natrium. Alcohol werkt als diureticum: je plast vaker, en daarmee verlies je vooral natrium. Kalium en magnesium zijn nuttig maar acuut minder belangrijk bij een kater.' },
+];
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'Article', headline:pageTitle, description:pageDescription, author:{'@type':'Person', name:config.author.name}, datePublished:'2026-08-09', mainEntityOfPage:new URL('/elektrolyten-kater/', config.domain).toString() })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'BreadcrumbList', itemListElement:[{'@type':'ListItem',position:1,name:'Beste Elektrolyten',item:config.domain},{'@type':'ListItem',position:2,name:'Elektrolyten kater',item:new URL('/elektrolyten-kater/', config.domain).toString()}] })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({ '@context':'https://schema.org','@type':'FAQPage', mainEntity: faq.map((item) => ({ '@type':'Question', name:item.question, acceptedAnswer:{ '@type':'Answer', text:item.answer } })) })} />
+  <BlogHero title="Elektrolyten tegen kater: wat werkt echt?" description="Alcohol droogt je uit en spoelt natrium weg. Suikervrije elektrolyten pakken beide problemen aan. Dit is welke je kiest en wanneer je ze neemt." author={config.author.name} authorAvatar={config.author.avatar} date="9 augustus 2026" readingTime="9 min. leestijd" breadcrumbs={[{ label: 'Elektrolyten kater', href: '/elektrolyten-kater/' }]} bannerImage="/images/content/electrolytes-nl-home-hero.webp" product={{ name: clearly.name, image: clearly.image, promoCode: clearly.promoCode, promoPercent: clearly.promoPercent, originalPrice: clearly.originalPrice, discountPrice: clearly.discountPrice, affiliateLink: clearly.affiliateLink }} heroButton={{ text: "Verder lezen", href: "#intro" }} showOfferBlock={false} />
+  <main style="background-color:#ffffff;">
+    <div class="container-large padding-global">
+      <div class="padding-section-medium">
+        <div class="blog-grid">
+          <div class="content-column">
+            <InBriefBlock title="Clearly is onze keuze voor de kater-hydratatie" paragraphs={['Alcohol werkt als diureticum: je plast meer, waardoor je vocht en natrium verliest. Dat verklaart een groot deel van de klassieke katerklachten: hoofdpijn, dorst, wazig gevoel en misselijkheid. Elektrolyten helpen daar direct tegen door natrium en vocht weer op te bouwen.', 'Clearly is voor deze pagina onze aanbeveling omdat het suikervrij poeder is met een duidelijke natrium-dosering, een prijs die per portie logisch blijft en een Nederlandse merkfit. Neem er één voor het slapen en één de volgende ochtend.']} assets={['Suikervrij, dus geen extra piek voor een gevoelige maag', 'Duidelijke natrium-dosering per portie', '60 porties per pot, bruikbaar voor sport én kater', 'Nederlandse beschikbaarheid met code LMC voor -15%']} considerations={['Geen wondermiddel: matigen blijft veruit de beste kater-preventie', 'Bij misselijkheid start je met kleine slokjes water']} product={clearly} ctaLabel="Bekijk Clearly" />
+
+            <section id="intro" class="support-intro rich-text">
+              <p>De zoekopdracht <strong>elektrolyten kater</strong> komt vaak op na een avond met wijn, bier of cocktails. Je voelt je uitgedroogd, je hoofd bonst en klassiek water alleen voelt onvoldoende. Dat is geen inbeelding: alcohol werkt als diureticum en spoelt natrium mee weg. Elektrolyten spelen daar direct op in.</p>
+              <p>Deze gids is praktisch. We leggen kort uit waarom een kater ontstaat, welke elektrolyten er echt toe doen, wanneer je ze best neemt en welk product in Nederland de meest logische keuze is.</p>
+            </section>
+
+            <TableOfContents items={tocItems} />
+
+            <section id="kort" class="rich-text seo-guide">
+              <h2>Kort antwoord: hydrateer met natrium, niet met suiker</h2>
+              <p>Wil je één regel? Neem <strong>voor het slapengaan een portie suikervrij elektrolytenpoeder in een groot glas water</strong>, en herhaal dat de volgende ochtend. Dat vult direct het natrium aan dat je door alcohol bent kwijtgeraakt en herstelt je vochtbalans.</p>
+              <p>Een klassieke sportdrank kan ook, maar de suiker helpt niet tegen misselijkheid en levert onnodige calorieën. Suikervrij en poeder met een duidelijke natrium-dosering is bijna altijd de betere keuze.</p>
+            </section>
+
+            <section id="waarom" class="rich-text seo-guide">
+              <h2>Waarom je een kater krijgt</h2>
+              <p>Een kater is geen enkelvoudig probleem, maar een combinatie van vier factoren:</p>
+              <ul>
+                <li><strong>Uitdroging:</strong> alcohol remt het hormoon vasopressine, waardoor je vaker moet plassen. Je verliest vocht én de mineralen die daarin zitten.</li>
+                <li><strong>Natriumverlies:</strong> bij dat vaker plassen scheid je vooral natrium uit. Dat verklaart een groot deel van de hoofdpijn, vermoeidheid en dorst.</li>
+                <li><strong>Acetaldehyde:</strong> alcohol wordt afgebroken tot deze giftige stof, die je lever moet verwerken. Dat kost tijd.</li>
+                <li><strong>Bloedsuikerschommelingen:</strong> alcohol kan je bloedsuiker eerst laten pieken en daarna dalen, wat vermoeidheid en trek versterkt.</li>
+              </ul>
+              <p>Elektrolyten pakken vooral de eerste twee factoren aan. Ze zijn geen wondermiddel voor acetaldehyde of de bloedsuikerdip, maar voor de hydratatie en natriumbalans zijn ze wel het snelste hulpmiddel.</p>
+            </section>
+
+            <section id="werken" class="rich-text seo-guide">
+              <h2>Werken elektrolyten echt tegen een kater?</h2>
+              <p>Ja, voor het hydratatiedeel. Water alleen vult je vocht aan, maar niet je natrium. En het is juist het natriumverlies dat een groot deel van de kater-symptomen verklaart. Onderzoek naar orale rehydratie (bijvoorbeeld ORS, het klassieke recept van de WHO tegen diarree) laat zien dat water plus natrium veel sneller weer wordt opgenomen dan water alleen.</p>
+              <p>Wat elektrolyten niet doen: ze breken geen alcohol af, ze beschermen je lever niet en ze voorkomen geen kater als je te veel drinkt. Het effect is beperkt tot rehydratatie en mineralenbalans. Voor de rest van de symptomen tellen slapen, rusten, eten en tijd.</p>
+              <InnerNote emoji="💡" text="Een portie elektrolytenpoeder in een glas water vlak voor het slapengaan doet vaak méér tegen de kater van morgen dan drie glazen water de ochtend erna." />
+            </section>
+
+            <section id="wanneer" class="rich-text seo-guide">
+              <h2>Wanneer neem je ze het beste?</h2>
+              <h3>Voor het slapengaan (belangrijkste moment)</h3>
+              <p>Dit is het moment waarop je de grootste impact hebt. Terwijl je slaapt verlies je verder vocht en natrium via ademhaling en plassen. Een portie elektrolyten in een groot glas water vlak voor bed helpt je wakker worden met minder klassieke katerklachten.</p>
+              <h3>De volgende ochtend</h3>
+              <p>De tweede portie werkt aanvullend. Neem hem als je wakker wordt, eventueel samen met een licht ontbijt (banaan, toast, ei). Als je maag gevoelig is, drink dan langzaam en in kleine slokjes.</p>
+              <h3>Tijdens het drinken (optioneel)</h3>
+              <p>Sommige mensen nemen tussendoor een portie. Dat kan, maar het maakt vaak minder verschil dan de portie vlak voor bed. Belangrijker is: afwisselen met water tijdens de avond zelf.</p>
+            </section>
+
+            <section id="kiezen" class="rich-text seo-guide">
+              <h2>Welk elektrolytenproduct kies je tegen een kater?</h2>
+              <p>Vier criteria tellen echt:</p>
+              <ul>
+                <li><strong>Suikervrij:</strong> een gevoelige maag reageert slecht op suikerpieken. Suiker is ook geen elektrolyt.</li>
+                <li><strong>Duidelijke natriumdosering:</strong> minstens 500 mg per portie is een goed vertrekpunt.</li>
+                <li><strong>Praktisch formaat:</strong> poeder is thuis het meest logisch, sticks zijn handig als je onderweg bent (bijvoorbeeld na een bruiloft ver van huis).</li>
+                <li><strong>Neutrale smaak:</strong> als je product niet lekker is bij een kater, drink je het niet.</li>
+              </ul>
+              <p>Op basis daarvan komen drie opties bovendrijven: Clearly (poeder, suikervrij, Nederland), Instant Hydration (sticks, handig onderweg) en IM8 (premium, bredere formule). Voor pure kater-hydratatie is Clearly onze eerste keuze.</p>
+            </section>
+
+            <div class="template-promo-block"><ReviewPromoCard product={clearly} /></div>
+
+            <section id="clearly" class="rich-text seo-guide">
+              <h2>Onze keuze: Clearly voor de kater-routine</h2>
+              <p>Clearly staat op nummer 1 in onze algemene <a href="/">vergelijking van elektrolyten</a>, en die keuze werkt ook prima voor de kater-context. Het is suikervrij poeder met een duidelijke mineralenlogica en 60 porties per pot. Dat maakt de portie per keer relatief goedkoop, wat handig is als je één pot wilt gebruiken voor sport, warme dagen én de occasionele kater.</p>
+              <p>Concreet plan: los één portie op in 300-400 ml water vlak voor het slapengaan. Zet een tweede portie klaar op je nachtkastje of aanrecht, zodat je er de volgende ochtend meteen naar kunt grijpen. Combineer met een licht ontbijt en rust.</p>
+              <p>Als je een pure lifestyleoptie zoekt die verder gaat dan alleen elektrolyten, kan IM8 interessanter zijn. Maar voor de puur functionele kater-routine is Clearly directer, goedkoper per portie en makkelijker in gebruik.</p>
+            </section>
+
+            <section id="vs" class="rich-text seo-guide">
+              <h2>Elektrolyten vs paracetamol: welke doet wat?</h2>
+              <p>Elektrolyten en paracetamol pakken twee verschillende dingen aan. Elektrolyten helpen je vocht- en natriumbalans herstellen. Paracetamol dempt hoofdpijn. Je kunt beide combineren, mits je paracetamol niet vaker neemt dan aanbevolen (max. 3-4 gram per dag voor een gezonde volwassene) en altijd met veel water inneemt.</p>
+              <p>Vermijd ibuprofen bij een kater als je maag gevoelig is: het kan de maagwand irriteren, zeker gecombineerd met alcohol. Paracetamol is meestal veiliger, maar houd rekening met je lever.</p>
+              <p>Het beste anti-kater plan blijft simpel: matig drinken, water tussendoor, elektrolyten voor bed en 's ochtends, eten en rusten. Elektrolyten zijn de meest efficiënte aanvulling, geen vervanger van gezond gedrag.</p>
+            </section>
+
+            <section id="faq" class="faq-section"><FAQSection faq={faq} title="Veelgestelde vragen" /></section>
+
+            <AuthorBioCard />
+          </div>
+          <aside class="sidebar-column">
+            <div class="sidebar-sticky">
+              <SidebarCTA logoSrc={clearly.brandLogo} productName={clearly.name} brandName={clearly.brand} promoCode={clearly.promoCode} promoPercent={clearly.promoPercent} originalPrice={clearly.originalPrice} discountPrice={clearly.discountPrice} ctaLink={clearly.affiliateLink} heroImage={clearly.image} rating={clearly.rating} reviewCount={clearly.reviewCount} />
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+  <ArticleGrid />
+</BaseLayout>
+
+<style>
+  .support-intro { margin-bottom: 2rem; }
+  .seo-guide { margin-top: 3rem; padding-top: 2rem; }
+  .seo-guide h2 { margin-bottom: 1rem; }
+  .seo-guide h3 { margin-top: 1.6rem; margin-bottom: .65rem; font-size: 1.22rem; font-weight: 700; color: #242424; }
+  .seo-guide p, .support-intro p { margin-bottom: 1rem; line-height: 1.7; color: #444; }
+  .seo-guide ul { margin: 1rem 0 1.5rem 1.25rem; color: #444; line-height: 1.7; }
+  .seo-guide li { margin-bottom: .65rem; }
+  .faq-section { margin-top: 3rem; padding-top: 2rem; }
+</style>
